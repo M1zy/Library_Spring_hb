@@ -1,0 +1,36 @@
+<html xmlns:c="">
+<body>
+<h4><a href="/libraries/">To Library Manager</a></h4>
+<div align="center">
+    <h2>Book Manager</h2>
+    <form method="get" action="search">
+        <input type="text" name="keyword" /> &nbsp;
+        <input type="submit" value="Search" />
+    </form>
+    <h3><a href="/new">New Book</a></h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Description</th>
+        </tr>
+       {{#books}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{author}}</td>
+                <td>{{year}}</td>
+                <td>{{description}}</td>
+                <td>
+                    <a href="/edit?id={{id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="/delete?id={{id}}">Delete</a>
+                </td>
+            </tr>
+       {{/books}}
+    </table>
+</div>
+</body>
+</html>

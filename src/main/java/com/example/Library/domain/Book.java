@@ -9,7 +9,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
     private String author;
@@ -41,11 +41,11 @@ public class Book {
         this.libraries = libraries;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

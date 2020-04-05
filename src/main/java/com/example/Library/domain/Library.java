@@ -7,9 +7,11 @@ import java.util.Set;
 public class Library {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String name;
+
+    private String address;
 
     @OneToMany(mappedBy = "library")
     Set<BookRegistration> books;
@@ -17,8 +19,25 @@ public class Library {
     public Library() {
     }
 
-    public Library(String name) {
+    public Library(String name,String address) {
         this.name=name;
+        this.address=address;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getName() {

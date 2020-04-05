@@ -18,13 +18,13 @@ public class BookRegistration {
     @JoinColumn(name = "library_id")
     Library library;
 
-    String registeredAt="a";
+
 
     public BookRegistration(){}
 
     public BookRegistration(Book book,Library library){
-        this.book=book;this.library=library; registeredAt=book.getName()+"; "+
-                library.getName();
+        this.book=book;
+        this.library=library;
     }
 
     public Book getBook() {
@@ -43,11 +43,5 @@ public class BookRegistration {
         this.library = library;
     }
 
-    public String getRegisteredAt() {
-        return registeredAt;
-    }
 
-    public void setRegisteredAt(String registeredAt) {
-        this.registeredAt = registeredAt;
-    }
 }
