@@ -3,81 +3,70 @@ package com.example.Library.Controller;
 import com.example.Library.domain.Book;
 
 import com.example.Library.service.BookService;
+import io.swagger.annotations.Api;
+import io.swagger.models.Model;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
-@Controller
+
+@RestController
+@RequestMapping("/api/book")
+@Api(value="Books", description="Operations to books")
 public class BookController {
     @Autowired
     private BookService bookService;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name = "name", required = false, defaultValue = "World") String name,
-                           Map<String, Object> model) {
-        model.put("name", name);
 
-        return "Book/greeting";
+
+
+    @RequestMapping(value = "/list", method=RequestMethod.GET)
+    public Iterable list(Model model) {
+        Iterable books = bookService.listAll();
+        return books;
     }
 
-    @RequestMapping("/")
-    public String main(Map<String, Object> model) {
-        Iterable<Book> books = bookService.listAll();
-        model.put("books", books);
-        return "Book/main";
+    @RequestMapping(value = "/show/{id}", method= RequestMethod.GET)
+    public Book showBook(@PathVariable Long id, Model model){
+        Book product = bookService.get(id);
+        return product;
     }
 
-    @RequestMapping("/search")
-    public String filter(@RequestParam String keyword,
-                         Map<String, Object> model) {
-        Iterable<Book> books = bookService.listByNameOrAuthor(keyword);
-        model.put("books", books);
-        return "Book/main";
+
+    @RequestMapping(value = "/search/{keyword}",method = RequestMethod.GET)
+    public Iterable  filter(@PathVariable String keyword,
+                             Model model) {
+        Iterable books = bookService.listByNameOrAuthor(keyword);
+        return books;
     }
 
-    @RequestMapping("/new")
-    public String newBookForm(Map<String, Object> model) {
-        Book book = new Book();
-        model.put("book", book);
-        return "Book/new_book";
-    }
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveBook(@RequestParam String name, @RequestParam String author,
-                           @RequestParam Integer year, @RequestParam String description,
-                           Map<String, Object> model) {
-        Book book = new Book(name, author, year, description);
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public ResponseEntity saveBook(@RequestBody Book book) {
         bookService.save(book);
-        return "redirect:/";
+        return new ResponseEntity("Book saved successfully", HttpStatus.OK);
     }
 
-    @RequestMapping("/edit")
-    public String editBookForm(@RequestParam Long id,
-                               Map<String, Object> model) {
-        Book book = bookService.get(id);
-        model.put("book", book);
-        return "Book/edit_book";
-    }
 
-    @RequestMapping("/delete")
-    public String deleteCustomerForm(@RequestParam long id) {
+    @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable Long id) {
         bookService.delete(id);
-        return "redirect:/";
+        return new ResponseEntity("Book deleted successfully", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updateBook(@RequestParam Long id, @RequestParam String name, @RequestParam String author,
-                             @RequestParam Integer year, @RequestParam String description,
-                             Map<String, Object> model) {
-        Book book = bookService.get(id);
-        book.setAuthor(author);
-        book.setDescription(description);
-        book.setName(name);
-        book.setYear(year);
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public ResponseEntity updateProduct(@PathVariable Long id,@RequestBody Book book) {
+        Book storedBook = bookService.get(id);
+        storedBook.setAuthor(book.getAuthor());
+        storedBook.setDescription(book.getDescription());
+        storedBook.setName(book.getName());
+        storedBook.setYear(book.getYear());
         bookService.save(book);
-        return "redirect:/";
+        return new ResponseEntity("Book updated successfully", HttpStatus.OK);
     }
 
 
