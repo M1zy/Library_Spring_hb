@@ -1,4 +1,4 @@
-package com.example.Library.domain;
+package com.example.library.domain;
 
 
 import javax.persistence.*;

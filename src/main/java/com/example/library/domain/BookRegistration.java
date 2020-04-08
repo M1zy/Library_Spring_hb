@@ -1,7 +1,6 @@
-package com.example.Library.domain;
+package com.example.library.domain;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class BookRegistration {

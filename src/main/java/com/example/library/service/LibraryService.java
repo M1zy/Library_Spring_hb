@@ -1,9 +1,7 @@
-package com.example.Library.service;
+package com.example.library.service;
 
-import com.example.Library.domain.Book;
-import com.example.Library.domain.Library;
-import com.example.Library.repos.BookRepository;
-import com.example.Library.repos.LibraryRepository;
+import com.example.library.domain.Library;
+import com.example.library.repos.LibraryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

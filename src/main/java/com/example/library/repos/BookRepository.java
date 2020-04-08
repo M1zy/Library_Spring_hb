@@ -1,6 +1,6 @@
-package com.example.Library.repos;
+package com.example.library.repos;
 
-import com.example.Library.domain.Book;
+import com.example.library.domain.Book;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
