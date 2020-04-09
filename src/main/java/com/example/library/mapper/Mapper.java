@@ -39,7 +39,7 @@ public class Mapper {
 
     public Book convertToEntity(BookDto bookDto) throws ParseException {
         Book book = modelMapper.map(bookDto, Book.class);
-        if (bookDto.getId() != null) {
+        if (bookDto.getId() != null&&bookDto.getLibraryIds()==null) {
             book.setLibraries(bookDto.getLibraryIds().stream().map(x->registrationService.get(x)).collect(Collectors.toSet()));
         }
         return book;
@@ -53,7 +53,7 @@ public class Mapper {
 
     public Library convertToEntity(LibraryDto libraryDto) throws ParseException {
         Library library = modelMapper.map(libraryDto,Library.class);
-        if (libraryDto.getId() != null) {
+        if (libraryDto.getId() != null&&libraryDto.getBookIds()==null) {
             library.setBooks(libraryDto.getBookIds().stream().map(x->registrationService.get(x)).collect(Collectors.toSet()));
         }
         return library;
