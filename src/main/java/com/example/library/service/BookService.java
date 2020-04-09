@@ -1,12 +1,15 @@
 package com.example.library.service;
 
 import com.example.library.domain.Book;
+import com.example.library.domain.BookRegistration;
+import com.example.library.domain.Library;
 import com.example.library.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -28,6 +31,10 @@ public class BookService {
 
     public void delete(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public Set<BookRegistration> listLibraries(Long id){
+        return bookRepository.findById(id).get().getLibraries();
     }
 
     public List<Book> listByNameOrAuthor(String filter){

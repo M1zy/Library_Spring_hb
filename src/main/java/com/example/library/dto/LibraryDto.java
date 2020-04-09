@@ -1,7 +1,11 @@
 package com.example.library.dto;
 
+import com.example.library.domain.Book;
 import com.example.library.domain.BookRegistration;
+import com.example.library.domain.Library;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LibraryDto {
@@ -10,6 +14,8 @@ public class LibraryDto {
     private String name;
 
     private String address;
+
+    private Set<Long> bookIds;
 
     public Long getId() {
         return id;
@@ -33,5 +39,13 @@ public class LibraryDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Long> getBookIds() {
+        return bookIds;
+    }
+
+    public void setBookIds(Set<Long> bookIds) {
+        this.bookIds = bookIds;
     }
 }

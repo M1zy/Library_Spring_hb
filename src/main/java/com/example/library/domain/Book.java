@@ -2,6 +2,7 @@ package com.example.library.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,7 +16,6 @@ public class Book {
     private String author;
     private Integer year;
     private String description;
-
 
     @OneToMany(mappedBy = "book")
     Set<BookRegistration> libraries;
