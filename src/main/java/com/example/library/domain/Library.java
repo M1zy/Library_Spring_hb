@@ -16,12 +16,14 @@ public class Library {
     @OneToMany(mappedBy = "library")
     Set<BookRegistration> books;
 
-    public Library() {
-    }
 
     public Library(String name,String address) {
         this.name=name;
         this.address=address;
+    }
+
+    public Library(){
+
     }
 
     public Long getId() {

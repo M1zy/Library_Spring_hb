@@ -23,6 +23,7 @@ public class LibraryController {
     @Autowired
     private LibraryService libraryService;
 
+    @Autowired
     private Mapper mapper=new Mapper();
 
     @RequestMapping(value = "/list", method=RequestMethod.GET)
