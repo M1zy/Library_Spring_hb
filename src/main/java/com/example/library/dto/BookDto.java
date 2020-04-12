@@ -1,10 +1,5 @@
 package com.example.library.dto;
 
-import com.example.library.domain.BookRegistration;
-import com.example.library.domain.Library;
-
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class BookDto {
@@ -66,5 +61,13 @@ public class BookDto {
 
     public void setLibraryIds(Set<Long> libraryIds) {
         this.libraryIds = libraryIds;
+    }
+
+    public void addLibraryId(Long id){
+        libraryIds.add(id);
+    }
+
+    public void removeLibraryId(Long id){
+        libraryIds.remove(id);
     }
 }

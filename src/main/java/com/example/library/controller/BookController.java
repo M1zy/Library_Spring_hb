@@ -2,9 +2,11 @@ package com.example.library.controller;
 
 import com.example.library.domain.Book;
 
+import com.example.library.domain.Library;
 import com.example.library.dto.BookDto;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.BookService;
+import com.example.library.service.LibraryService;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import org.modelmapper.ModelMapper;
@@ -24,6 +26,9 @@ import java.util.stream.Collectors;
 public class BookController {
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private LibraryService libraryService;
 
     @Autowired
     private Mapper mapper = new Mapper();
@@ -63,15 +68,24 @@ public class BookController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateProduct(@PathVariable Long id,@RequestBody BookDto bookDto) throws ParseException {
+    public ResponseEntity updateBook(@PathVariable Long id,@RequestBody BookDto bookDto) throws ParseException {
         Book storedBook = bookService.get(id);
         Book book = mapper.convertToEntity(bookDto);
         storedBook.setAuthor(book.getAuthor());
         storedBook.setDescription(book.getDescription());
         storedBook.setName(book.getName());
         storedBook.setYear(book.getYear());
-        bookService.save(book);
+        bookService.save(storedBook);
         return new ResponseEntity("Book updated successfully", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/addLibrary/{idBook}_to_{idLibrary}", method = RequestMethod.PUT)
+    public ResponseEntity addingLibrary(@PathVariable Long idBook,@PathVariable Long idLibrary) throws ParseException {
+        Book book = bookService.get(idBook);
+        Library library = libraryService.get(idLibrary);
+        book.addLibrary(library);
+        bookService.save(book);
+        return new ResponseEntity("Book added to library successfully", HttpStatus.OK);
     }
 
 

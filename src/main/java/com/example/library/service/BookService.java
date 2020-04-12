@@ -1,7 +1,6 @@
 package com.example.library.service;
 
 import com.example.library.domain.Book;
-import com.example.library.domain.BookRegistration;
 import com.example.library.domain.Library;
 import com.example.library.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +32,16 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public Set<BookRegistration> listLibraries(Long id){
+    public Set<Library> listLibraries(Long id){
         return bookRepository.findById(id).get().getLibraries();
     }
 
     public List<Book> listByNameOrAuthor(String filter){
         return (List<Book>) bookRepository.findBooksByNameContainsOrAuthorContains(filter,filter);
+    }
+
+    public boolean exist(Long id){
+        return bookRepository.existsById(id);
     }
 
 }

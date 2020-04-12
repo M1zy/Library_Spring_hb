@@ -2,6 +2,7 @@ package com.example.library.domain;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,27 +18,37 @@ public class Book {
     private Integer year;
     private String description;
 
-    @OneToMany(mappedBy = "book")
-    Set<BookRegistration> libraries;
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "book_registration",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "library_id")
+    )
+    Set<Library> libraries;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "book_id")
+    private Set<BookRent> bookRentSet =new HashSet<BookRent>();
 
     public Book(String name, String author, Integer year,
-                String description) {
+                String description,Set<Library> libraries) {
         this.name = name;
         this.author = author;
         this.year = year;
         this.description = description;
-
+        this.libraries=libraries;
     }
     public Book(){
 
     }
 
-    public Set<BookRegistration> getLibraries() {
+    public Set<Library> getLibraries() {
         return libraries;
     }
 
-    public void setLibraries(Set<BookRegistration> libraries) {
+    public void setLibraries(Set<Library> libraries) {
         this.libraries = libraries;
     }
 
@@ -79,5 +90,24 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void addLibrary(Library library){
+        Set<Book> books=library.getBooks();
+        books.add(this);
+        library.setBooks(books);
+        libraries.add(library);
+    }
+
+    public void removeLibrary(Library library){
+        libraries.remove(library);
+    }
+
+    public Set<BookRent> getBookRentSet() {
+        return bookRentSet;
+    }
+
+    public void setBookRentSet(Set<BookRent> bookRentSet) {
+        this.bookRentSet = bookRentSet;
     }
 }
