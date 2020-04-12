@@ -78,25 +78,29 @@ public class UserController {
         return new ResponseEntity("User updated successfully", HttpStatus.OK);
     }
 
+    public boolean isValidBookRent(Long idUser,Long idBook,Long idLibrary){
+        if(!userService.exist(idUser)){
+            return false;
+        }
+        if(!libraryService.exist(idLibrary)){
+            return false;
+        }
+        if(!bookService.exist(idBook)){
+            return false;
+        }
+        return true;
+    }
+
 
     @RequestMapping(value = "/addRent/{idUser},{idBook},{idLibrary}", method = RequestMethod.PUT)
     public ResponseEntity addRent(@PathVariable Long idUser,@PathVariable Long idBook,
                                   @PathVariable Long idLibrary) throws ParseException {
-        User user;
-        Library library;
-        Book book;
-        if(userService.exist(idUser)){
-            user=userService.get(idUser);
+        if(!isValidBookRent(idUser,idBook,idLibrary)){
+            return new ResponseEntity("Wrong attributes",HttpStatus.CONFLICT);
         }
-        else return new ResponseEntity("No such user was found",HttpStatus.CONFLICT);
-        if(libraryService.exist(idLibrary)){
-            library=libraryService.get(idLibrary);
-        }
-        else return new ResponseEntity("No such library was found",HttpStatus.CONFLICT);
-        if(bookService.exist(idBook)){
-            book=bookService.get(idBook);
-        }
-        else return new ResponseEntity("No such book was found",HttpStatus.CONFLICT);
+        User user=userService.get(idUser);
+        Library library=libraryService.get(idLibrary);
+        Book book=bookService.get(idBook);
         if(!libraryService.listByBook(book).contains(library)){
            return new ResponseEntity("This library doesn't contain this book",HttpStatus.CONFLICT);
         }
@@ -113,21 +117,13 @@ public class UserController {
     @RequestMapping(value = "/returnRent/{idUser},{idBook},{idLibrary}", method = RequestMethod.PUT)
     public ResponseEntity returnRent(@PathVariable Long idUser,@PathVariable Long idBook,
                                   @PathVariable Long idLibrary) throws ParseException {
-        User user;
-        Library library;
-        Book book;
-        if(userService.exist(idUser)){
-            user=userService.get(idUser);
+        if(!isValidBookRent(idUser,idBook,idLibrary)){
+            return new ResponseEntity("Wrong attributes",HttpStatus.CONFLICT);
         }
-        else return new ResponseEntity("No such user was found",HttpStatus.CONFLICT);
-        if(libraryService.exist(idLibrary)){
-            library=libraryService.get(idLibrary);
-        }
-        else return new ResponseEntity("No such library was found",HttpStatus.CONFLICT);
-        if(bookService.exist(idBook)){
-            book=bookService.get(idBook);
-        }
-        else return new ResponseEntity("No such book was found",HttpStatus.CONFLICT);
+        User user=userService.get(idUser);
+        Library library=libraryService.get(idLibrary);
+        Book book=bookService.get(idBook);
+
         BookRent bookRent=bookRentService.bookRent(book,library,user);
         user.removeBookRent(bookRent);
         book.addLibrary(library);
