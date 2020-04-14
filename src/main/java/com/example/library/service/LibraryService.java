@@ -3,6 +3,7 @@ package com.example.library.service;
 import com.example.library.domain.Book;
 import com.example.library.domain.Library;
 import com.example.library.repos.LibraryRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class LibraryService {
     @Autowired
     LibraryRepository libraryRepository;

@@ -4,6 +4,7 @@ import com.example.library.domain.Library;
 import com.example.library.domain.User;
 import com.example.library.repos.LibraryRepository;
 import com.example.library.repos.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserService {
 
     @Autowired

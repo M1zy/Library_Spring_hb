@@ -6,23 +6,21 @@ import com.example.library.mapper.Mapper;
 import com.example.library.service.LibraryService;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
-import io.swagger.models.auth.In;
-import org.modelmapper.ModelMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/library")
 @Api(value="Libraries", description="Operations to libraries")
+@RequiredArgsConstructor
 public class LibraryController {
     @Autowired
     private LibraryService libraryService;
@@ -71,6 +69,7 @@ public class LibraryController {
         libraryService.save(storedLibrary);
         return new ResponseEntity("Library updated successfully", HttpStatus.OK);
     }
+
     @RequestMapping(value = "/list_quantityOfBooks", method=RequestMethod.GET)
     public HashMap<LibraryDto,Integer> quantity(Model model) {
         HashMap<LibraryDto, Integer> librariesQuantity=new HashMap<>();

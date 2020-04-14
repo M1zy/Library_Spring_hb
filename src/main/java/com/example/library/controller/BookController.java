@@ -9,7 +9,7 @@ import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
-import org.modelmapper.ModelMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/book")
 @Api(value="Books", description="Operations to books")
+@RequiredArgsConstructor
 public class BookController {
     @Autowired
     private BookService bookService;

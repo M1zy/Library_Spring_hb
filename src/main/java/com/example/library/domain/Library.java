@@ -1,10 +1,17 @@
 package com.example.library.domain;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Library {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,41 +34,6 @@ public class Library {
         this.books=books;
     }
 
-    public Library(){
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
 
     public void addBook(Book book){
         Set<Library> libraries = book.getLibraries();
@@ -74,11 +46,5 @@ public class Library {
         books.remove(book);
     }
 
-    public Set<BookRent> getBookRentSet() {
-        return bookRentSet;
-    }
 
-    public void setBookRentSet(Set<BookRent> bookRentSet) {
-        this.bookRentSet = bookRentSet;
-    }
 }
