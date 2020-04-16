@@ -13,6 +13,7 @@ import com.example.library.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/user")
 @Api(value="Users", description="Operations to users")
 @RequiredArgsConstructor
+@Log4j2
 public class UserController {
 
     @Autowired
@@ -51,51 +53,65 @@ public class UserController {
     }
 
     @RequestMapping(value = "/show/{id}", method= RequestMethod.GET)
-    public UserDto showUser(@PathVariable Long id){
+    public UserDto getUser(@PathVariable Long id){
+        try {
+            userService.get(id);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
         User user = userService.get(id);
         return mapper.convertToDto(user);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity saveUser(@RequestBody UserDto userDto) throws ParseException {
-        User user = mapper.convertToEntity(userDto);
-        userService.save(user);
-        return new ResponseEntity("User saved successfully", HttpStatus.OK);
+        try {
+            User user = mapper.convertToEntity(userDto);
+            userService.save(user);
+            return new ResponseEntity("User saved successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable Long id) {
+        try {
         userService.delete(id);
         return new ResponseEntity("User deleted successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@PathVariable Long id,@RequestBody UserDto userDto) throws ParseException {
-        User user = userService.get(id);
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity updateUser(@RequestBody UserDto userDto) throws ParseException {
+        try {
+        User user = userService.get(userDto.getId());
         User newUser = mapper.convertToEntity(userDto);
-        newUser.setId(id);
         newUser.setBookRentSet(user.getBookRentSet());
         userService.save(newUser);
         return new ResponseEntity("User updated successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 
     public  boolean isValidBookRent(Long idUser,Long idBook,Long idLibrary){
-        if(!userService.exist(idUser)){
-            return false;
-        }
-        if(!libraryService.exist(idLibrary)){
-            return false;
-        }
-        if(!bookService.exist(idBook)){
-            return false;
-        }
-        return true;
+        return !(!userService.exist(idUser)||!libraryService.exist(idLibrary)
+        ||!bookService.exist(idBook));
     }
 
     public boolean isLibraryContainingBook(Library library,Book book){
-        if(libraryService.listByBook(book).contains(library))return true;
-        return false;
+        return (libraryService.listByBook(book).contains(library));
     }
 
 
@@ -105,6 +121,7 @@ public class UserController {
         if(!isValidBookRent(idUser,idBook,idLibrary)||!isLibraryContainingBook(
                 libraryService.get(idLibrary),bookService.get(idBook)
         )){
+            log.error("Wrong attributes");
             return new ResponseEntity("Wrong attributes",HttpStatus.CONFLICT);
         }
         User user=userService.get(idUser);
@@ -132,6 +149,7 @@ public class UserController {
     public ResponseEntity returnRent(@PathVariable Long idUser,@PathVariable Long idBook,
                                   @PathVariable Long idLibrary) throws ParseException {
         if(!isValidBookRent(idUser,idBook,idLibrary)){
+            log.error("Wrong attributes {}, {} or {}","BookID","LibraryId","UserID");
             return new ResponseEntity("Wrong attributes",HttpStatus.CONFLICT);
         }
         User user=userService.get(idUser);

@@ -7,6 +7,7 @@ import com.example.library.service.LibraryService;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/library")
 @Api(value="Libraries", description="Operations to libraries")
 @RequiredArgsConstructor
+@Log4j2
 public class LibraryController {
     @Autowired
     private LibraryService libraryService;
@@ -35,7 +37,13 @@ public class LibraryController {
     }
 
     @RequestMapping(value = "/show/{id}", method= RequestMethod.GET)
-    public LibraryDto showLibrary(@PathVariable Long id, Model model){
+    public LibraryDto getLibrary(@PathVariable Long id, Model model){
+        try {
+            libraryService.get(id);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
         Library library = libraryService.get(id);
         return mapper.convertToDto(library);
     }
@@ -49,35 +57,48 @@ public class LibraryController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ResponseEntity saveLibrary(@RequestBody LibraryDto libraryDto) throws ParseException {
-        Library library = mapper.convertToEntity(libraryDto);
-        libraryService.save(library);
-        return new ResponseEntity("Library saved successfully", HttpStatus.OK);
+        try {
+            Library library = mapper.convertToEntity(libraryDto);
+            libraryService.save(library);
+            return new ResponseEntity("Library saved successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable Long id) {
-        libraryService.delete(id);
-        return new ResponseEntity("Library deleted successfully", HttpStatus.OK);
+        try {
+            libraryService.delete(id);
+            return new ResponseEntity("Library deleted successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
-    public ResponseEntity updateLibrary(@PathVariable Long id,@RequestBody LibraryDto libraryDto) throws ParseException {
-        Library storedLibrary = libraryService.get(id);
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public ResponseEntity updateLibrary(@RequestBody LibraryDto libraryDto) throws ParseException {
+        try {
+        Library storedLibrary = libraryService.get(libraryDto.getId());
         Library library=mapper.convertToEntity(libraryDto);
         storedLibrary.setName(library.getName());
         storedLibrary.setAddress(library.getAddress());
         libraryService.save(storedLibrary);
         return new ResponseEntity("Library updated successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
     }
 
-    @RequestMapping(value = "/list_quantityOfBooks", method=RequestMethod.GET)
-    public HashMap<LibraryDto,Integer> quantity(Model model) {
-        HashMap<LibraryDto, Integer> librariesQuantity=new HashMap<>();
-        List<LibraryDto> libraryDtos=list(model);
-        for(int i=0;i<libraryDtos.size();i++){
-            librariesQuantity.put(libraryDtos.get(i),libraryService.get(libraryDtos.get(i).getId()).getBooks().size());
-        }
-        return librariesQuantity;
+    @RequestMapping(value = "/quantity/{id}", method=RequestMethod.GET)
+    public Integer getQuantityOfBooks(@PathVariable Long id,Model model) {
+        return libraryService.get(id).getBooks().size();
     }
 
 }

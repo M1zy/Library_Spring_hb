@@ -20,7 +20,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 public class SwaggerConfig {
 
     @Bean
-    public Docket bookApi() {
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()                 .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
                 .paths(regex("/api.*"))
