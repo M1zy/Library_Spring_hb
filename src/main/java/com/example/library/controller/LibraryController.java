@@ -98,6 +98,9 @@ public class LibraryController {
 
     @RequestMapping(value = "/quantity/{id}", method=RequestMethod.GET)
     public Integer getQuantityOfBooks(@PathVariable Long id,Model model) {
+        if(!libraryService.exist(id)){
+            log.error("This library doesn't exist");
+        }
         return libraryService.get(id).getBooks().size();
     }
 
