@@ -4,15 +4,20 @@ import com.example.library.domain.Library;
 import com.example.library.dto.LibraryDto;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.LibraryService;
+import com.example.library.util.ExcelGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
@@ -102,6 +107,21 @@ public class LibraryController {
             log.error("This library doesn't exist");
         }
         return libraryService.get(id).getBooks().size();
+    }
+
+    @RequestMapping(value = "/toFile/{id}", method = RequestMethod.POST)
+    public ResponseEntity excelLibraryReport(@PathVariable Long id) throws IOException {
+        try {
+            libraryService.get(id);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
+        Library library = libraryService.get(id);
+        ExcelGenerator.libraryToExcel(library);
+
+        return new ResponseEntity("Excel was created",HttpStatus.OK);
     }
 
 }
