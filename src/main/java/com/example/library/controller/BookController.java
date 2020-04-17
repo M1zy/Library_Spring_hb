@@ -7,15 +7,21 @@ import com.example.library.dto.BookDto;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
+import com.example.library.util.LibraryGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -121,8 +127,26 @@ public class BookController {
         }
     }
 
-
-
+    @RequestMapping(value = "/toFile/{id}", method = RequestMethod.GET)
+    public ResponseEntity<InputStreamResource> excelBookReport(@PathVariable Long id) throws IOException {
+        try {
+            bookService.get(id);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+        }
+        Book book = bookService.get(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-disposition", "attachment;filename=book.xlsx");
+        LibraryGenerator libraryGenerator = new LibraryGenerator();
+        ByteArrayInputStream in = libraryGenerator.toExcel(book);
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(new InputStreamResource(in));
+    }
 
 
 }

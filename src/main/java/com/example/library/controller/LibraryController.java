@@ -4,7 +4,7 @@ import com.example.library.domain.Library;
 import com.example.library.dto.LibraryDto;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.LibraryService;
-import com.example.library.util.ExcelGenerator;
+import com.example.library.util.LibraryGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
@@ -13,13 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -109,8 +109,8 @@ public class LibraryController {
         return libraryService.get(id).getBooks().size();
     }
 
-    @RequestMapping(value = "/toFile/{id}", method = RequestMethod.POST)
-    public ResponseEntity excelLibraryReport(@PathVariable Long id) throws IOException {
+    @RequestMapping(value = "/toFile/{id}", method = RequestMethod.GET)
+    public ResponseEntity<InputStreamResource> excelLibraryReport(@PathVariable Long id) throws IOException {
         try {
             libraryService.get(id);
         }
@@ -119,9 +119,15 @@ public class LibraryController {
             return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
         }
         Library library = libraryService.get(id);
-        ExcelGenerator.libraryToExcel(library);
-
-        return new ResponseEntity("Excel was created",HttpStatus.OK);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-disposition", "attachment;filename=library.xlsx");
+        LibraryGenerator libraryGenerator = new LibraryGenerator();
+        ByteArrayInputStream in = libraryGenerator.toExcel(library);
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(new InputStreamResource(in));
     }
 
 }
