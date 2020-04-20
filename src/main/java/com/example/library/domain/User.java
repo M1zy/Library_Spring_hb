@@ -11,12 +11,8 @@ import java.util.Set;
 @Entity
 @Table(name="USER", schema = "public")
 @Getter @Setter @NoArgsConstructor
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class User extends Essence {
 
-    private String name;
     private String login;
     private String password;
     private String email;
@@ -25,7 +21,12 @@ public class User {
     @JoinColumn(name = "user_id")
     private Set<BookRent> bookRentSet =new HashSet<BookRent>();
 
-
+    public User(String name, String login, String password, String email){
+        super.setName(name);
+        this.login=login;
+        this.email=email;
+        this.password=password;
+    }
 
     public void addBookRent(BookRent bookRent){
         this.bookRentSet.add(bookRent);

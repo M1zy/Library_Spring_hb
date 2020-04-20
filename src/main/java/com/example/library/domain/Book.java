@@ -1,6 +1,5 @@
 package com.example.library.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,15 +9,10 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Getter @Setter @NoArgsConstructor
-public class Book {
+@Getter @Setter
+@NoArgsConstructor
+public class Book extends Essence {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-
-    private String name;
     private String author;
     private Integer year;
     private String description;
@@ -33,18 +27,14 @@ public class Book {
     )
     private Set<Library> libraries;
 
-
-
-    public Book(String name, String author, Integer year,
+    public Book(String name,String author, Integer year,
                 String description,Set<Library> libraries) {
-        this.name = name;
+        super.setName(name);
         this.author = author;
         this.year = year;
         this.description = description;
         this.libraries=libraries;
     }
-
-
 
     public void addLibrary(Library library){
         Set<Book> books=library.getBooks();
@@ -56,6 +46,4 @@ public class Book {
     public void removeLibrary(Library library){
         libraries.remove(library);
     }
-
-
 }

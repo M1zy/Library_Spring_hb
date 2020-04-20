@@ -5,6 +5,7 @@ import com.example.library.domain.BookRent;
 import com.example.library.domain.Library;
 import com.example.library.domain.User;
 import com.example.library.repos.BookRentRepository;
+import com.example.library.repos.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class BookRentService {
+public class BookRentService  {
 
     @Autowired
     BookRentRepository bookRentRepository;

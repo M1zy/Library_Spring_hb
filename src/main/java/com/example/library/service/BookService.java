@@ -2,6 +2,7 @@ package com.example.library.service;
 
 import com.example.library.domain.Book;
 import com.example.library.domain.Library;
+import com.example.library.repos.BookRentRepository;
 import com.example.library.repos.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import java.util.Set;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class BookService {
+public class BookService   {
     @Autowired
     BookRepository bookRepository;
+
+
 
     public void save(Book book){
         bookRepository.save(book);

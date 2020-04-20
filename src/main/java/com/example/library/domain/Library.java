@@ -12,12 +12,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Library {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    private String name;
+public class Library extends Essence{
 
     private String address;
 
@@ -29,11 +24,10 @@ public class Library {
     private Set<BookRent> bookRentSet =new HashSet<BookRent>();
 
     public Library(String name,String address,Set<Book> books) {
-        this.name=name;
+        super.setName(name);
         this.address=address;
         this.books=books;
     }
-
 
     public void addBook(Book book){
         Set<Library> libraries = book.getLibraries();
@@ -45,7 +39,5 @@ public class Library {
     public void removeBook(Book book){
         books.remove(book);
     }
-
-
 
 }

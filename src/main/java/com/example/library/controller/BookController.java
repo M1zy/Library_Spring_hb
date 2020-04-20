@@ -7,6 +7,7 @@ import com.example.library.dto.BookDto;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
+import com.example.library.util.BookGenerator;
 import com.example.library.util.LibraryGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
@@ -139,8 +140,8 @@ public class BookController {
         Book book = bookService.get(id);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-disposition", "attachment;filename=book.xlsx");
-        LibraryGenerator libraryGenerator = new LibraryGenerator();
-        ByteArrayInputStream in = libraryGenerator.toExcel(book);
+        BookGenerator bookGenerator = new BookGenerator();
+        ByteArrayInputStream in = bookGenerator.toExcel(book);
         return ResponseEntity
                 .ok()
                 .headers(headers)

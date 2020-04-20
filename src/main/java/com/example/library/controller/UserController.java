@@ -11,6 +11,7 @@ import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
 import com.example.library.service.UserService;
 import com.example.library.util.LibraryGenerator;
+import com.example.library.util.UserGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
@@ -183,8 +184,8 @@ public class UserController {
         User user = userService.get(id);
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-disposition", "attachment;filename=user.xlsx");
-        LibraryGenerator libraryGenerator = new LibraryGenerator();
-        ByteArrayInputStream in = libraryGenerator.toExcel(user);
+        UserGenerator userGenerator = new UserGenerator();
+        ByteArrayInputStream in = userGenerator.toExcel(user);
         return ResponseEntity
                 .ok()
                 .headers(headers)
