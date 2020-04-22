@@ -1,14 +1,11 @@
 package com.example.library.controller;
-
 import com.example.library.domain.Book;
-
 import com.example.library.domain.Library;
 import com.example.library.dto.BookDto;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
 import com.example.library.util.BookGenerator;
-import com.example.library.util.LibraryGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
@@ -20,13 +17,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @RestController
 @RequestMapping("/api/book")
@@ -61,7 +56,6 @@ public class BookController {
         return mapper.convertToDto(book);
     }
 
-
     @RequestMapping(value = "/search/{keyword}",method = RequestMethod.GET)
     public List<BookDto>  filter(@PathVariable String keyword,
                              Model model) {
@@ -81,7 +75,6 @@ public class BookController {
             return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
         }
     }
-
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable Long id) {
@@ -148,6 +141,4 @@ public class BookController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(new InputStreamResource(in));
     }
-
-
 }

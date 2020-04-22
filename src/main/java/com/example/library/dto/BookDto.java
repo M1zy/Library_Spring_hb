@@ -2,7 +2,6 @@ package com.example.library.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,7 +18,6 @@ public class BookDto {
     private String description;
 
     private Set<Long> libraryIds=new HashSet<>();
-
 
     public void addLibraryId(Long id){
         libraryIds.add(id);

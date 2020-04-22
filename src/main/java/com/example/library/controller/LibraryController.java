@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -44,13 +43,13 @@ public class LibraryController {
     @RequestMapping(value = "/show/{id}", method= RequestMethod.GET)
     public LibraryDto getLibrary(@PathVariable Long id, Model model){
         try {
-            libraryService.get(id);
+            Library library = libraryService.get(id);
+            return mapper.convertToDto(library);
         }
         catch (Exception e){
             log.error(e.getMessage());
+            return null;
         }
-        Library library = libraryService.get(id);
-        return mapper.convertToDto(library);
     }
 
     @RequestMapping(value = "/search/{keyword}",method = RequestMethod.GET)
@@ -112,22 +111,19 @@ public class LibraryController {
     @RequestMapping(value = "/toFile/{id}", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> excelLibraryReport(@PathVariable Long id) throws IOException {
         try {
-            libraryService.get(id);
-        }
-        catch (Exception e){
+            Library library = libraryService.get(id);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Content-disposition", "attachment;filename=library.xlsx");
+            LibraryGenerator libraryGenerator = new LibraryGenerator();
+            ByteArrayInputStream in = libraryGenerator.toExcel(library);
+            return ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(new InputStreamResource(in));
+        } catch (Exception e) {
             log.error(e.getMessage());
-            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+            return new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
         }
-        Library library = libraryService.get(id);
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-disposition", "attachment;filename=library.xlsx");
-        LibraryGenerator libraryGenerator = new LibraryGenerator();
-        ByteArrayInputStream in = libraryGenerator.toExcel(library);
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(new InputStreamResource(in));
     }
-
 }

@@ -1,13 +1,9 @@
 package com.example.library.util;
-
-import com.example.library.domain.BookRent;
-import com.example.library.domain.Library;
 import com.example.library.domain.User;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -17,9 +13,8 @@ public class UserGenerator extends ExcelGenerator<User> {
     public ByteArrayInputStream toExcel(User user)  {
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("user");
-            String[] columns= new String[]{"UserID", "Name", "Login", "Email"};
             int rowIdx = 1;
-            rowIdx=headerToExcel(workbook,columns,sheet,rowIdx);
+            rowIdx=headerToExcel(workbook,userHeader,sheet,rowIdx);
             Row row = sheet.createRow(rowIdx++);
             row.createCell(0).setCellValue(user.getId());
             row.createCell(1).setCellValue(user.getName());

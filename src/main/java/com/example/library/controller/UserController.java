@@ -1,5 +1,4 @@
 package com.example.library.controller;
-
 import com.example.library.domain.Book;
 import com.example.library.domain.BookRent;
 import com.example.library.domain.Library;
@@ -10,7 +9,6 @@ import com.example.library.service.BookRentService;
 import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
 import com.example.library.service.UserService;
-import com.example.library.util.LibraryGenerator;
 import com.example.library.util.UserGenerator;
 import io.swagger.annotations.Api;
 import io.swagger.models.Model;
@@ -23,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.ParseException;
@@ -84,7 +81,6 @@ public class UserController {
         }
     }
 
-
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable Long id) {
         try {
@@ -120,7 +116,6 @@ public class UserController {
     public boolean isLibraryContainingBook(Library library,Book book){
         return (libraryService.listByBook(book).contains(library));
     }
-
 
     @RequestMapping(value = "/addRent/{idUser},{idBook},{idLibrary}", method = RequestMethod.PUT)
     public ResponseEntity addRent(@PathVariable Long idUser,@PathVariable Long idBook,
@@ -192,5 +187,4 @@ public class UserController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(new InputStreamResource(in));
     }
-
 }

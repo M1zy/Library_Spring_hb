@@ -1,6 +1,5 @@
 package com.example.library.config;
 
-
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,6 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @Configuration
@@ -27,8 +25,6 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiEndPointsInfo());
     }
-
-
 
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder().title("Spring Boot REST API")

@@ -1,22 +1,25 @@
 package com.example.library.domain;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import java.io.File;
 
-@MappedSuperclass
-@Getter @Setter @NoArgsConstructor
-public abstract class Essence {
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private  String name;
+    private File report;
 
-    public Essence(String name) {
-        this.name = name;
-    }
+    private String date;
+
 }

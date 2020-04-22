@@ -3,9 +3,7 @@ package com.example.library.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-
 import java.util.Set;
 
 @Entity
@@ -29,7 +27,7 @@ public class Book extends Essence {
 
     public Book(String name,String author, Integer year,
                 String description,Set<Library> libraries) {
-        super.setName(name);
+        super(name);
         this.author = author;
         this.year = year;
         this.description = description;

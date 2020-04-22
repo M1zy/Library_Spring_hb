@@ -1,9 +1,7 @@
 package com.example.library.domain;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +10,6 @@ import java.util.Set;
 @Table(name="USER", schema = "public")
 @Getter @Setter @NoArgsConstructor
 public class User extends Essence {
-
     private String login;
     private String password;
     private String email;
@@ -22,7 +19,7 @@ public class User extends Essence {
     private Set<BookRent> bookRentSet =new HashSet<BookRent>();
 
     public User(String name, String login, String password, String email){
-        super.setName(name);
+        super(name);
         this.login=login;
         this.email=email;
         this.password=password;

@@ -1,9 +1,7 @@
 package com.example.library.domain;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +11,6 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Library extends Essence{
-
     private String address;
 
     @ManyToMany(mappedBy = "libraries")
@@ -24,7 +21,7 @@ public class Library extends Essence{
     private Set<BookRent> bookRentSet =new HashSet<BookRent>();
 
     public Library(String name,String address,Set<Book> books) {
-        super.setName(name);
+        super(name);
         this.address=address;
         this.books=books;
     }
@@ -39,5 +36,4 @@ public class Library extends Essence{
     public void removeBook(Book book){
         books.remove(book);
     }
-
 }

@@ -1,38 +1,36 @@
 package com.example.library.util;
-
 import com.example.library.domain.*;
-import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.*;
-import org.reflections.ReflectionUtils;
-
-import javax.swing.text.html.parser.Entity;
 import java.io.ByteArrayInputStream;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class ExcelGenerator<T extends Essence>{
-
     public abstract ByteArrayInputStream toExcel(T essence);
 
-    static Integer headerToExcel(Workbook workbook, String[] header, Sheet sheet, Integer step){
+    protected static final List<String> bookHeader= Arrays.asList("BookID", "Name", "Author", "Year", "Description");
+
+    protected static final List<String> libraryHeader= Arrays.asList("LibraryID", "Name", "Address");
+
+    protected static final List<String> userHeader= Arrays.asList("UserID", "Name", "Login", "Email","LibraryID","BookIDS");
+
+    static Integer headerToExcel(Workbook workbook, List<String> header, Sheet sheet, Integer step){
         Row headerRow = sheet.createRow(step++);
         Font headerFont = workbook.createFont();
         headerFont.setBold(true);
         headerFont.setColor(IndexedColors.BLUE.getIndex());
         CellStyle headerCellStyle = workbook.createCellStyle();
         headerCellStyle.setFont(headerFont);
-        for (int col = 0; col < header.length; col++) {
+        for (int col = 0; col < header.size(); col++) {
             Cell cell = headerRow.createCell(col);
-            cell.setCellValue(header[col]);
+            cell.setCellValue(header.get(col));
             cell.setCellStyle(headerCellStyle);
         }
         return step;
     }
 
-
     static Integer booksToExcel(Workbook workbook, Sheet sheet, Set<Book> bookSet, Integer step){
-        String[] columns = new String[]{"BookID", "Name", "Author", "Year", "Description"};
-        step=headerToExcel(workbook,columns,sheet,step);
+        step=headerToExcel(workbook,bookHeader,sheet,step);
         Row row = sheet.createRow(step++);
         for (Book book : bookSet) {
             row = sheet.createRow(step++);
@@ -47,8 +45,7 @@ public abstract class ExcelGenerator<T extends Essence>{
     }
 
     static Integer librariesToExcel(Workbook workbook, Sheet sheet, Set<Library> librarySet, Integer step){
-        String[] columns= new String[]{"LibraryID", "Name", "Address"};
-        step=headerToExcel(workbook,columns,sheet,step);
+        step=headerToExcel(workbook,libraryHeader,sheet,step);
         Row row = sheet.createRow(step++);
         for(Library library : librarySet ){
             row = sheet.createRow(step++);
@@ -61,8 +58,7 @@ public abstract class ExcelGenerator<T extends Essence>{
     }
 
     static Integer rentsToExcel(Workbook workbook, Sheet sheet, Set<BookRent> bookRentSet, Integer step){
-        String[] columns = new String[]{"UserID", "Name", "Login", "Email","LibraryID","BookIDS"};
-        step=headerToExcel(workbook,columns,sheet,step);
+        step=headerToExcel(workbook,userHeader,sheet,step);
         Row row = sheet.createRow(step++);
         for (BookRent bookRent : bookRentSet) {
             row = sheet.createRow(step++);
@@ -76,5 +72,4 @@ public abstract class ExcelGenerator<T extends Essence>{
         sheet.createRow(step++);
         return step;
     }
-
 }
