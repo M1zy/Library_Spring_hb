@@ -21,5 +21,4 @@ public class Report {
     private File report;
 
     private String date;
-
 }
