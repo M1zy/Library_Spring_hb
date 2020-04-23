@@ -43,5 +43,4 @@ public class BookService {
     public boolean exist(Long id){
         return bookRepository.existsById(id);
     }
-
 }

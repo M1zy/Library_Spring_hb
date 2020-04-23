@@ -13,7 +13,7 @@ public class UserGenerator extends ExcelGenerator<User> {
     public ByteArrayInputStream toExcel(User user)  {
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("user");
-            int rowIdx = 1;
+            int rowIdx = 0;
             rowIdx=headerToExcel(workbook,userHeader,sheet,rowIdx);
             Row row = sheet.createRow(rowIdx++);
             row.createCell(0).setCellValue(user.getId());

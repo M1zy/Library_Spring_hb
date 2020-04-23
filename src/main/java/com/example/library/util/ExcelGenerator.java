@@ -31,9 +31,8 @@ public abstract class ExcelGenerator<T extends Essence>{
 
     static Integer booksToExcel(Workbook workbook, Sheet sheet, Set<Book> bookSet, Integer step){
         step=headerToExcel(workbook,bookHeader,sheet,step);
-        Row row = sheet.createRow(step++);
         for (Book book : bookSet) {
-            row = sheet.createRow(step++);
+            Row row = sheet.createRow(step++);
             row.createCell(0).setCellValue(book.getId());
             row.createCell(1).setCellValue(book.getName());
             row.createCell(2).setCellValue(book.getAuthor());
@@ -46,9 +45,8 @@ public abstract class ExcelGenerator<T extends Essence>{
 
     static Integer librariesToExcel(Workbook workbook, Sheet sheet, Set<Library> librarySet, Integer step){
         step=headerToExcel(workbook,libraryHeader,sheet,step);
-        Row row = sheet.createRow(step++);
         for(Library library : librarySet ){
-            row = sheet.createRow(step++);
+            Row row = sheet.createRow(step++);
             row.createCell(0).setCellValue(library.getId());
             row.createCell(1).setCellValue(library.getName());
             row.createCell(2).setCellValue(library.getAddress());
@@ -59,9 +57,8 @@ public abstract class ExcelGenerator<T extends Essence>{
 
     static Integer rentsToExcel(Workbook workbook, Sheet sheet, Set<BookRent> bookRentSet, Integer step){
         step=headerToExcel(workbook,userHeader,sheet,step);
-        Row row = sheet.createRow(step++);
         for (BookRent bookRent : bookRentSet) {
-            row = sheet.createRow(step++);
+            Row row = sheet.createRow(step++);
             row.createCell(0).setCellValue(bookRent.getUser().getId());
             row.createCell(1).setCellValue(bookRent.getUser().getName());
             row.createCell(2).setCellValue(bookRent.getUser().getLogin());

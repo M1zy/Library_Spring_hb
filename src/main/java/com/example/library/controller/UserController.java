@@ -144,7 +144,6 @@ public class UserController {
             book.removeLibrary(library);
             bookService.save(book);
         return new ResponseEntity("Book was rented", HttpStatus.OK);
-
     }
 
     @RequestMapping(value = "/returnRent/{idUser},{idBook},{idLibrary}", method = RequestMethod.PUT)

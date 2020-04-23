@@ -13,7 +13,7 @@ public class BookGenerator extends ExcelGenerator<Book> {
     public ByteArrayInputStream toExcel(Book book)  {
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("book");
-            int rowIdx = 1;
+            int rowIdx = 0;
             rowIdx=headerToExcel(workbook,bookHeader,sheet,rowIdx);
             Row row = sheet.createRow(rowIdx++);
             row.createCell(0).setCellValue(book.getId());
