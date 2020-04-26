@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -42,4 +43,6 @@ public class LibraryService {
     public boolean exist(Long id){
         return libraryRepository.existsById(id);
     }
+
+    public Set<Book> bookSet(Long id){return libraryRepository.findById(id).get().getBooks();}
 }

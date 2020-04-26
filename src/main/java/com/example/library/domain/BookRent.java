@@ -38,4 +38,6 @@ public class BookRent {
     public void removeBook(Book book){
         this.books.remove(book);
     }
+
+    public void removeBooks(Set<Book> books){this.books.removeAll(books);}
 }

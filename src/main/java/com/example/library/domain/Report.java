@@ -14,9 +14,12 @@ public class Report extends Essence {
 
     private String date;
 
+    private String status="OK";
+
     public Report(String name,File report,String date) {
         super(name);
         this.report=report;
         this.date=date;
     }
+
 }

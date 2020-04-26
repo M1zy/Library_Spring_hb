@@ -27,4 +27,10 @@ public class BookRentService {
     public void save(BookRent bookRent){
         bookRentRepository.save(bookRent);
     }
+
+    public void delete(BookRent bookRent){
+        bookRentRepository.delete(bookRent);
+    }
+
+    public boolean exist(Long id){return bookRentRepository.existsById(id);}
 }

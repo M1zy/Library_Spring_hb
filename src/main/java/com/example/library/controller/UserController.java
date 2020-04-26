@@ -3,7 +3,9 @@ import com.example.library.domain.Book;
 import com.example.library.domain.BookRent;
 import com.example.library.domain.Library;
 import com.example.library.domain.User;
+import com.example.library.dto.RentDto;
 import com.example.library.dto.UserDto;
+import com.example.library.exception.RecordNotFoundException;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.BookRentService;
 import com.example.library.service.BookService;
@@ -11,7 +13,6 @@ import com.example.library.service.LibraryService;
 import com.example.library.service.UserService;
 import com.example.library.util.UserGenerator;
 import io.swagger.annotations.Api;
-import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -51,139 +54,117 @@ public class UserController {
     private Mapper mapper = new Mapper();
 
     @RequestMapping(value = "/list", method= RequestMethod.GET)
-    public List<UserDto> list(Model model) {
+    public List<UserDto> list() {
         List<User> users = userService.listAll();
         return users.stream().map(mapper::convertToDto).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/show/{id}", method= RequestMethod.GET)
-    public UserDto getUser(@PathVariable Long id){
-        try {
-            userService.get(id);
-        }
-        catch (Exception e){
-            log.error(e.getMessage());
+    public ResponseEntity<UserDto> getUser(@PathVariable Long id){
+        if(!userService.exist(id)){
+            throw new RecordNotFoundException("Invalid user id : "+id);
         }
         User user = userService.get(id);
-        return mapper.convertToDto(user);
+        return new ResponseEntity<>(mapper.convertToDto(user), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity saveUser(@RequestBody UserDto userDto) throws ParseException {
-        try {
+    public ResponseEntity<UserDto> saveUser(@Valid @RequestBody UserDto userDto) throws ParseException {
             User user = mapper.convertToEntity(userDto);
             userService.save(user);
-            return new ResponseEntity("User saved successfully", HttpStatus.OK);
-        }
-        catch (Exception e){
-            log.error(e.getMessage());
-            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
-        }
+            return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable Long id) {
         try {
-        userService.delete(id);
-        return new ResponseEntity("User deleted successfully", HttpStatus.OK);
+            userService.delete(id);
+            return new ResponseEntity("User was deleted successfully", HttpStatus.OK);
         }
         catch (Exception e){
-            log.error(e.getMessage());
-            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
+            throw new RecordNotFoundException("Invalid user id : "+id);
         }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity updateUser(@RequestBody UserDto userDto) throws ParseException {
-        try {
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto) throws ParseException {
+        if(!bookService.exist(userDto.getId())){
+            throw new RecordNotFoundException("Invalid user id : " + userDto.getId());
+        }
         User user = userService.get(userDto.getId());
         User newUser = mapper.convertToEntity(userDto);
         newUser.setBookRentSet(user.getBookRentSet());
         userService.save(newUser);
-        return new ResponseEntity("User updated successfully", HttpStatus.OK);
-        }
-        catch (Exception e){
-            log.error(e.getMessage());
-            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
-        }
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
-    public  boolean isValidBookRent(Long idUser,Long idBook,Long idLibrary){
-        return !(!userService.exist(idUser)||!libraryService.exist(idLibrary)
-        ||!bookService.exist(idBook));
+    public boolean isLibraryContainingBooks(Library library,Set<Book> books){
+        return (libraryService.bookSet(library.getId()).containsAll(books));
     }
 
-    public boolean isLibraryContainingBook(Library library,Book book){
-        return (libraryService.listByBook(book).contains(library));
-    }
-
-    @RequestMapping(value = "/addRent/{idUser},{idBook},{idLibrary}", method = RequestMethod.PUT)
-    public ResponseEntity addRent(@PathVariable Long idUser,@PathVariable Long idBook,
-                                  @PathVariable Long idLibrary) throws ParseException {
-        if(!isValidBookRent(idUser,idBook,idLibrary)||!isLibraryContainingBook(
-                libraryService.get(idLibrary),bookService.get(idBook)
-        )){
-            log.error("Wrong attributes");
-            return new ResponseEntity("Wrong attributes",HttpStatus.CONFLICT);
+    @RequestMapping(value = "/addRent", method = RequestMethod.PUT)
+    public ResponseEntity addRent(@Valid @RequestBody RentDto rentDto) {
+        BookRent rent = mapper.convertToEntity(rentDto);
+        if(!isLibraryContainingBooks(rent.getLibrary(),rent.getBooks())){
+            return new ResponseEntity("Library doesn't contain this books", HttpStatus.OK);
         }
-        User user=userService.get(idUser);
-        Library library=libraryService.get(idLibrary);
-        Book book=bookService.get(idBook);
         BookRent bookRent;
-        if(bookRentService.bookRent(library,user)!=null){
-            bookRent=bookRentService.bookRent(library,user);
+        if(bookRentService.bookRent(rent.getLibrary(),rent.getUser())!=null){
+            bookRent=bookRentService.bookRent(rent.getLibrary(),rent.getUser());
         }
         else {
-            bookRent = new BookRent(new HashSet<Book>(), library, user);
+            bookRent = new BookRent(new HashSet<>(),rent.getLibrary(),rent.getUser());
         }
+        Set<Book> books = rent.getBooks();
+        Library library = rent.getLibrary();
+        User user = rent.getUser();
+        for (Book book:
+             books) {
             bookRent.addBook(book);
+            library.removeBook(book);
+            book.removeLibrary(library);
+        }
             user.addBookRent(bookRent);
             userService.save(user);
-            library.removeBook(book);
             libraryService.save(library);
-            book.removeLibrary(library);
-            bookService.save(book);
         return new ResponseEntity("Book was rented", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/returnRent/{idUser},{idBook},{idLibrary}", method = RequestMethod.PUT)
-    public ResponseEntity returnRent(@PathVariable Long idUser,@PathVariable Long idBook,
-                                  @PathVariable Long idLibrary) throws ParseException {
-        if(!isValidBookRent(idUser,idBook,idLibrary)){
-            log.error("Wrong attributes {}, {} or {}","BookID","LibraryId","UserID");
-            return new ResponseEntity("Wrong attributes",HttpStatus.CONFLICT);
+    @RequestMapping(value = "/returnRent", method = RequestMethod.PUT)
+    public ResponseEntity returnRent(@Valid @RequestBody RentDto rentDto) throws ParseException {
+        try {
+            BookRent bookRent = mapper.convertToEntity(rentDto);
+            User user = bookRent.getUser();
+            Set<Book> books = bookRent.getBooks();
+            Library library = libraryService.get(rentDto.getLibraryId());
+            BookRent newBookRent=bookRentService.bookRent(library,user);
+            newBookRent.removeBooks(books);
+            library.addBooks(books);
+            bookRentService.save(newBookRent);
+            libraryService.save(library);
+            return new ResponseEntity("Book was returned to the library", HttpStatus.OK);
         }
-        User user=userService.get(idUser);
-        Library library=libraryService.get(idLibrary);
-        Book book=bookService.get(idBook);
-
-        BookRent bookRent=bookRentService.bookRent(book,library,user);
-        bookRent.removeBook(book);
-        book.addLibrary(library);
-        bookRentService.save(bookRent);
-        userService.save(user);
-        bookService.save(book);
-        return new ResponseEntity("Book was returned to the library", HttpStatus.OK);
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 
     @RequestMapping(value = "/toFile/{id}", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> excelUserReport(@PathVariable Long id) throws IOException {
-        try {
-            userService.get(id);
+        if(!userService.exist(id)){
+            throw new RecordNotFoundException("Invalid user id : " + id);
         }
-        catch (Exception e){
-            log.error(e.getMessage());
-            return new ResponseEntity(e.getMessage(),HttpStatus.CONFLICT);
-        }
-        User user = userService.get(id);
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-disposition", "attachment;filename=user.xlsx");
-        UserGenerator userGenerator = new UserGenerator();
-        ByteArrayInputStream in = userGenerator.toExcel(user);
-        return ResponseEntity
-                .ok()
-                .headers(headers)
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(new InputStreamResource(in));
+            User user = userService.get(id);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Content-disposition", "attachment;filename=user.xlsx");
+            UserGenerator userGenerator = new UserGenerator();
+            ByteArrayInputStream in = userGenerator.toExcel(user);
+            in.close();
+            return ResponseEntity
+                    .ok()
+                    .headers(headers)
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(new InputStreamResource(in));
     }
 }

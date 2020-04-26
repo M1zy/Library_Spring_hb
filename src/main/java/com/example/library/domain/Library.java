@@ -33,6 +33,13 @@ public class Library extends Essence{
         books.add(book);
     }
 
+    public void addBooks(Set<Book> books){
+        for (Book book:
+             books) {
+            addBook(book);
+        }
+    }
+
     public void removeBook(Book book){
         books.remove(book);
     }

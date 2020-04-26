@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "scheduling.job.cron",
+      "type": "java.lang.String",
+      "description": "Description for scheduling.job.cron."
+  }
+] }

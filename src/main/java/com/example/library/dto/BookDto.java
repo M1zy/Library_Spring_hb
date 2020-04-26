@@ -2,6 +2,8 @@ package com.example.library.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,8 +11,10 @@ import java.util.Set;
 public class BookDto {
     private Long id;
 
+    @NotEmpty(message = "name must not be empty")
     private String name;
 
+    @NotEmpty(message = "author must not be empty")
     private String author;
 
     private Integer year;

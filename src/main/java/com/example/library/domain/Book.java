@@ -3,6 +3,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,9 @@ public class Book extends Essence {
             inverseJoinColumns = @JoinColumn(name = "library_id")
     )
     private Set<Library> libraries;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private BookRent bookRentSet;
 
     public Book(String name,String author, Integer year,
                 String description,Set<Library> libraries) {

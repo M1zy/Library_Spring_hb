@@ -1,7 +1,7 @@
 package com.example.library.util;
 import java.io.*;
+import java.util.Date;
 import java.util.List;
-
 import com.example.library.domain.*;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -17,9 +17,7 @@ public class LibraryGenerator extends ExcelGenerator<Library> {
             int rowIdx = 0;
             rowIdx = headerToExcel(workbook, libraryHeader, sheet, rowIdx);
             Row row = sheet.createRow(rowIdx++);
-            row.createCell(0).setCellValue(library.getId());
-            row.createCell(1).setCellValue(library.getName());
-            row.createCell(2).setCellValue(library.getAddress());
+            fillRow(library,row);
             rowIdx = booksToExcel(workbook, sheet, library.getBooks(), rowIdx);
             rentsToExcel(workbook, sheet, library.getBookRentSet(), rowIdx);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -39,9 +37,7 @@ public class LibraryGenerator extends ExcelGenerator<Library> {
                      libraries) {
                     rowIdx = headerToExcel(workbook, libraryHeader, sheet, rowIdx);
                     Row row = sheet.createRow(rowIdx++);
-                    row.createCell(0).setCellValue(library.getId());
-                    row.createCell(1).setCellValue(library.getName());
-                    row.createCell(2).setCellValue(library.getAddress());
+                    fillRow(library,row);
                     rowIdx = booksToExcel(workbook, sheet, library.getBooks(), rowIdx);
                     rowIdx=rentsToExcel(workbook, sheet, library.getBookRentSet(), rowIdx);
                     sheet.createRow(rowIdx++);
@@ -54,5 +50,47 @@ public class LibraryGenerator extends ExcelGenerator<Library> {
                     return null;
                 }
         }
+
+    @Override
+    public Report report(Library library) {
+        Report report = new Report();
+        try {
+        ByteArrayInputStream in = toExcel(library);
+        String date = dateFormat(new Date());
+        StringBuilder name = new StringBuilder();
+        name.append("Library_");
+        name.append(library.getName());
+        name.append("_address_");
+        name.append(library.getAddress());
+        name.append("_report_");
+        name.append(date);
+        report = new Report(name.toString(),
+                byteArrayInputStreamToFile(in, name.toString()), date);
+        }
+        catch (Exception e){
+            report.setStatus(e.getMessage());
+        }
+        finally {
+            return report;
+        }
+    }
+
+    public Report report(List<Library> libraries) {
+        Report report = new Report();
+        try {
+        String date = dateFormat(new Date());
+        StringBuilder name = new StringBuilder();
+        name.append("Libraries_report_");
+        name.append(date);
+        report = new Report(name.toString(),
+                byteArrayInputStreamToFile(toExcel(libraries), name.toString()), date);
+        }
+        catch (Exception e){
+            report.setStatus(e.getMessage());
+        }
+        finally {
+            return report;
+        }
+    }
 
 }
