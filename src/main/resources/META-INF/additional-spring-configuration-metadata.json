@@ -4,5 +4,10 @@
       "name": "scheduling.job.cron",
       "type": "java.lang.String",
       "description": "Description for scheduling.job.cron."
-  }
-] }
+    },
+    {
+      "name": "app.message",
+      "type": "java.lang.String",
+      "description": "Description for app.message."
+    }
+  ] }
