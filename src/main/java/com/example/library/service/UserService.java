@@ -1,4 +1,5 @@
 package com.example.library.service;
+import com.example.library.domain.Book;
 import com.example.library.domain.User;
 import com.example.library.repos.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,4 +33,13 @@ public class UserService {
     }
 
     public boolean exist(long id){return userRepository.existsById(id);}
+
+    public void allUsersToConsole(){
+        System.out.println("USERS:");
+        for (User user:
+                listAll()) {
+            System.out.print("User-");
+            user.toConsole();
+        }
+    }
 }

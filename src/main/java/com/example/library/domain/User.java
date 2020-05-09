@@ -32,4 +32,8 @@ public class User extends Essence {
     public void removeBookRent(BookRent bookRent){
         this.bookRentSet.remove(bookRent);
     }
+
+    public void toConsole(){
+        System.out.println("Id:"+ getId()+"; Name:"+getName()+"; Email:"+ getEmail()+"; Password:"+getPassword());
+    }
 }

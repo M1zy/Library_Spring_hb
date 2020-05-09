@@ -45,4 +45,13 @@ public class LibraryService {
     }
 
     public Set<Book> bookSet(Long id){return libraryRepository.findById(id).get().getBooks();}
+
+    public void allLibrariesToConsole(){
+        System.out.println("LIBRARIES:");
+        for (Library library:
+                listAll()) {
+            System.out.print("Library-");
+            library.toConsole();
+        }
+    }
 }

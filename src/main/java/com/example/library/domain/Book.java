@@ -47,4 +47,8 @@ public class Book extends Essence {
     public void removeLibrary(Library library){
         libraries.remove(library);
     }
+
+    public void toConsole(){
+        System.out.println("Id:"+ getId()+"; Name:"+getName()+"; Author:"+ getAuthor()+";");
+    }
 }

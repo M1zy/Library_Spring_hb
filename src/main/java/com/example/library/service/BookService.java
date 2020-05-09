@@ -44,4 +44,13 @@ public class BookService {
         return bookRepository.existsById(id);
     }
 
+    public void allBooksToConsole(){
+        System.out.println("BOOKS:");
+        for (Book book:
+                listAll()) {
+            System.out.print("Book-");
+            book.toConsole();
+        }
+    }
+
 }
