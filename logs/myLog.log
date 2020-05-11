@@ -68,3 +68,99 @@
 2020-05-11 20:14:29.031  INFO 23492 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-05-11 20:14:29.047  INFO 23492 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2020-05-11 20:14:29.068  INFO 23492 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-11 21:19:19.382  INFO 26512 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 26512 (started by slabk in D:\Java Projects\Library)
+2020-05-11 21:19:19.393  INFO 26512 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
+2020-05-11 21:19:22.067  INFO 26512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-11 21:19:22.245  INFO 26512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 145ms. Found 5 JPA repository interfaces.
+2020-05-11 21:19:23.804  INFO 26512 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-11 21:19:23.952  INFO 26512 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-11 21:19:24.329  INFO 26512 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-11 21:19:24.994  INFO 26512 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-11 21:19:25.534  INFO 26512 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-11 21:19:25.597  INFO 26512 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-05-11 21:19:27.244  INFO 26512 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-11 21:19:27.255  INFO 26512 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 21:19:28.973  WARN 26512 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-11 21:19:29.452  INFO 26512 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-05-11 21:19:30.370  INFO 26512 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-11 21:19:30.531  INFO 26512 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-05-11 21:19:31.055  INFO 26512 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-11 21:19:31.182  INFO 26512 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-05-11 21:19:31.327  INFO 26512 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-05-11 21:19:31.387  INFO 26512 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-05-11 21:19:31.740  INFO 26512 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2020-05-11 21:19:31.759  INFO 26512 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
+2020-05-11 21:19:31.818  INFO 26512 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
+2020-05-11 21:19:31.897  INFO 26512 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
+2020-05-11 21:19:31.920  INFO 26512 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
+2020-05-11 21:19:31.991  INFO 26512 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 17.379 seconds (JVM running for 23.117)
+2020-05-11 21:19:31.995  INFO 26512 --- [main] com.example.library.LibraryApplication   : EXECUTING : command line runner
+2020-05-11 21:19:32.403  INFO 26512 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-11 21:19:32.405  INFO 26512 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-11 21:19:32.410  INFO 26512 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 21:19:32.414  INFO 26512 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-11 21:19:32.427  INFO 26512 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-11 21:22:08.373  INFO 20384 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 20384 (started by slabk in D:\Java Projects\Library)
+2020-05-11 21:22:08.374  INFO 20384 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
+2020-05-11 21:22:09.650  INFO 20384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-11 21:22:09.772  INFO 20384 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104ms. Found 5 JPA repository interfaces.
+2020-05-11 21:22:10.735  INFO 20384 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-11 21:22:10.877  INFO 20384 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-11 21:22:11.134  INFO 20384 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-11 21:22:11.740  INFO 20384 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-11 21:22:11.941  INFO 20384 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-11 21:22:11.971  INFO 20384 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-05-11 21:22:13.223  INFO 20384 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-11 21:22:13.236  INFO 20384 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 21:22:14.455  WARN 20384 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-11 21:22:14.928  INFO 20384 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-05-11 21:22:15.461  INFO 20384 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-11 21:22:15.547  INFO 20384 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-05-11 21:22:15.923  INFO 20384 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-11 21:22:16.000  INFO 20384 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-05-11 21:22:16.046  INFO 20384 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-05-11 21:22:16.093  INFO 20384 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-05-11 21:22:16.384  INFO 20384 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2020-05-11 21:22:16.399  INFO 20384 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
+2020-05-11 21:22:16.415  INFO 20384 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
+2020-05-11 21:22:16.487  INFO 20384 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
+2020-05-11 21:22:16.527  INFO 20384 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
+2020-05-11 21:22:16.612  INFO 20384 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 8.904 seconds (JVM running for 10.308)
+2020-05-11 21:22:16.617  INFO 20384 --- [main] com.example.library.LibraryApplication   : EXECUTING : command line runner
+2020-05-11 21:22:17.090  INFO 20384 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-11 21:22:17.092  INFO 20384 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-11 21:22:17.100  INFO 20384 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 21:22:17.105  INFO 20384 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-11 21:22:17.124  INFO 20384 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-11 21:28:32.731  INFO 15336 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 15336 (started by slabk in D:\Java Projects\Library)
+2020-05-11 21:28:32.734  INFO 15336 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
+2020-05-11 21:28:34.127  INFO 15336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-11 21:28:34.266  INFO 15336 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120ms. Found 5 JPA repository interfaces.
+2020-05-11 21:28:35.422  INFO 15336 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-11 21:28:35.524  INFO 15336 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-11 21:28:35.729  INFO 15336 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-11 21:28:36.322  INFO 15336 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-11 21:28:36.633  INFO 15336 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-11 21:28:36.657  INFO 15336 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-05-11 21:28:37.905  INFO 15336 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-11 21:28:37.915  INFO 15336 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 21:28:39.284  WARN 15336 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-11 21:28:39.687  INFO 15336 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-05-11 21:28:40.259  INFO 15336 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-11 21:28:40.380  INFO 15336 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-05-11 21:28:40.942  INFO 15336 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-11 21:28:41.029  INFO 15336 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-05-11 21:28:41.077  INFO 15336 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-05-11 21:28:41.129  INFO 15336 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-05-11 21:28:41.369  INFO 15336 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2020-05-11 21:28:41.383  INFO 15336 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
+2020-05-11 21:28:41.417  INFO 15336 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
+2020-05-11 21:28:41.469  INFO 15336 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
+2020-05-11 21:28:41.499  INFO 15336 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
+2020-05-11 21:28:41.550  INFO 15336 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 9.593 seconds (JVM running for 11.075)
+2020-05-11 21:28:41.553  INFO 15336 --- [main] com.example.library.LibraryApplication   : EXECUTING : command line runner
+2020-05-11 21:28:41.971  INFO 15336 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-11 21:28:41.973  INFO 15336 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-11 21:28:41.982  INFO 15336 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 21:28:41.999  INFO 15336 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-11 21:28:42.027  INFO 15336 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

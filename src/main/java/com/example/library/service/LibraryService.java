@@ -54,4 +54,15 @@ public class LibraryService {
             library.toConsole();
         }
     }
+
+    public void commandToConsole(String[] args){
+        for(int i=0;i<args.length;i++) {
+            switch (args[i]) {
+                case "all": {
+                    allLibrariesToConsole();
+                    break;
+                }
+            }
+        }
+    }
 }

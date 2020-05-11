@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 @SpringBootApplication
 @Log4j2
 public class LibraryApplication implements CommandLineRunner {
@@ -35,25 +38,16 @@ public class LibraryApplication implements CommandLineRunner {
 		}else {
 			for (int i=0;i<args.length;i++) {
 				switch(args[i]){
-					case "allBooks" : {
-						bookService.booksToConsole(bookService.listAll());
+					case "Book" : {
+						bookService.commandToConsole(Arrays.copyOfRange(args,i+1,args.length));
 						break;
 					}
-					case "allLibraries":{
-						libraryService.allLibrariesToConsole();
+					case "Library":{
+						libraryService.commandToConsole(Arrays.copyOfRange(args,i+1,args.length));
 						break;
 					}
-					case "allUsers":{
-						userService.allUsersToConsole();
-						break;
-					}
-					case "book-name":{
-						try {
-							bookService.booksToConsole(bookService.listByName(args[i+1]));
-						}
-						catch (Exception ex){
-							bookService.booksToConsole(bookService.listAll());
-						}
+					case "User":{
+						userService.commandToConsole(Arrays.copyOfRange(args,i+1,args.length));
 						break;
 					}
 				}

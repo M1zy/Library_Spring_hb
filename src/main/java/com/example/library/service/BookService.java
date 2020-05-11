@@ -48,12 +48,32 @@ public class BookService {
         return bookRepository.existsById(id);
     }
 
-    public void booksToConsole(List<Book> books) {
+    private void booksToConsole(List<Book> books) {
         System.out.println("Book:");
         for (Book book :
                 books) {
             System.out.print("Book-");
             book.toConsole();
+        }
+    }
+
+    public void commandToConsole(String[] args){
+        for(int i=0;i<args.length;i++) {
+            switch (args[i]) {
+                case "all": {
+                    booksToConsole(listAll());
+                    break;
+                }
+                case "name": {
+                    try {
+                        booksToConsole(listByName(args[i++]));
+                    }
+                    catch (Exception ex){
+                        booksToConsole(listAll());
+                    }
+                    break;
+                }
+            }
         }
     }
 
