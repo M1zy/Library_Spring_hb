@@ -1,559 +1,70 @@
-2020-05-09 10:04:21.018  INFO 9880 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 9880 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:04:21.036  INFO 9880 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:04:21.241  INFO 9880 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:04:21.242  INFO 9880 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:04:21.243  INFO 9880 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:04:23.402  INFO 9880 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:04:23.525  INFO 9880 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 113ms. Found 5 JPA repository interfaces.
-2020-05-09 10:04:24.648  INFO 9880 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:04:24.683  INFO 9880 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:04:24.684  INFO 9880 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:04:24.897  INFO 9880 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:04:24.897  INFO 9880 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3654 ms
-2020-05-09 10:04:25.190  INFO 9880 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:04:25.272  INFO 9880 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:04:25.470  INFO 9880 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:04:25.604  INFO 9880 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:04:26.063  INFO 9880 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:04:26.112  INFO 9880 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:04:27.881  INFO 9880 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:04:27.910  INFO 9880 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:04:27.968  INFO 9880 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:04:28.696  WARN 9880 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:04:28.868  INFO 9880 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:04:29.003  INFO 9880 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:04:29.059  INFO 9880 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:04:29.229  INFO 9880 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:04:29.320  INFO 9880 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:04:29.355  INFO 9880 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:04:29.377  INFO 9880 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:04:29.531  INFO 9880 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:04:29.535  INFO 9880 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:04:29.539  INFO 9880 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:04:29.553  INFO 9880 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:04:29.560  INFO 9880 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:04:29.939  INFO 9880 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:04:29.962  INFO 9880 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 9.874 seconds (JVM running for 11.779)
-2020-05-09 10:05:35.230  INFO 17812 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 17812 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:05:35.233  INFO 17812 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:05:35.286  INFO 17812 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:05:35.286  INFO 17812 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:05:35.287  INFO 17812 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:05:36.330  INFO 17812 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:05:36.388  INFO 17812 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50ms. Found 5 JPA repository interfaces.
-2020-05-09 10:05:36.996  INFO 17812 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:05:37.004  INFO 17812 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:05:37.005  INFO 17812 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:05:37.122  INFO 17812 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:05:37.122  INFO 17812 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1835 ms
-2020-05-09 10:05:37.268  INFO 17812 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:05:37.326  INFO 17812 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:05:37.411  INFO 17812 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:05:37.484  INFO 17812 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:05:37.626  INFO 17812 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:05:37.638  INFO 17812 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:05:38.417  INFO 17812 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:05:38.424  INFO 17812 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:05:38.456  INFO 17812 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:05:39.055  WARN 17812 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:05:39.161  INFO 17812 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:05:39.266  INFO 17812 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:05:39.299  INFO 17812 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:05:39.388  INFO 17812 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:05:39.430  INFO 17812 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:05:39.445  INFO 17812 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:05:39.470  INFO 17812 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:05:39.645  INFO 17812 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:05:39.650  INFO 17812 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:05:39.654  INFO 17812 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:05:39.670  INFO 17812 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:05:39.681  INFO 17812 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:05:40.038  INFO 17812 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:05:40.042  INFO 17812 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 5.147 seconds (JVM running for 6.312)
-2020-05-09 10:05:54.445  INFO 3852 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 3852 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:05:54.448  INFO 3852 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:05:54.491  INFO 3852 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:05:54.492  INFO 3852 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:05:54.492  INFO 3852 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:05:55.302  INFO 3852 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:05:55.364  INFO 3852 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52ms. Found 5 JPA repository interfaces.
-2020-05-09 10:05:55.909  INFO 3852 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:05:55.916  INFO 3852 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:05:55.916  INFO 3852 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:05:56.038  INFO 3852 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:05:56.039  INFO 3852 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1546 ms
-2020-05-09 10:05:56.161  INFO 3852 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:05:56.215  INFO 3852 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:05:56.301  INFO 3852 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:05:56.374  INFO 3852 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:05:56.512  INFO 3852 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:05:56.524  INFO 3852 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:05:57.294  INFO 3852 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:05:57.300  INFO 3852 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:05:57.333  INFO 3852 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:05:57.864  WARN 3852 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:05:57.960  INFO 3852 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:05:58.054  INFO 3852 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:05:58.085  INFO 3852 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:05:58.157  INFO 3852 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:05:58.189  INFO 3852 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:05:58.201  INFO 3852 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:05:58.222  INFO 3852 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:05:58.350  INFO 3852 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:05:58.355  INFO 3852 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:05:58.360  INFO 3852 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:05:58.376  INFO 3852 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:05:58.382  INFO 3852 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:05:58.792  INFO 3852 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:05:58.798  INFO 3852 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.722 seconds (JVM running for 6.153)
-2020-05-09 10:06:43.170  INFO 18412 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 18412 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:06:43.173  INFO 18412 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:06:43.215  INFO 18412 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:06:43.216  INFO 18412 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:06:43.217  INFO 18412 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:06:44.232  INFO 18412 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:06:44.290  INFO 18412 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 50ms. Found 5 JPA repository interfaces.
-2020-05-09 10:06:44.848  INFO 18412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:06:44.856  INFO 18412 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:06:44.856  INFO 18412 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:06:44.991  INFO 18412 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:06:44.992  INFO 18412 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1775 ms
-2020-05-09 10:06:45.129  INFO 18412 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:06:45.196  INFO 18412 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:06:45.308  INFO 18412 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:06:45.403  INFO 18412 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:06:45.552  INFO 18412 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:06:45.564  INFO 18412 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:06:46.369  INFO 18412 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:06:46.377  INFO 18412 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:06:46.429  INFO 18412 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:06:47.023  WARN 18412 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:06:47.128  INFO 18412 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:06:47.250  INFO 18412 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:06:47.290  INFO 18412 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:06:47.378  INFO 18412 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:06:47.425  INFO 18412 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:06:47.443  INFO 18412 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:06:47.471  INFO 18412 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:06:47.624  INFO 18412 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:06:47.628  INFO 18412 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:06:47.632  INFO 18412 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:06:47.647  INFO 18412 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:06:47.655  INFO 18412 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:06:47.977  INFO 18412 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:06:47.979  INFO 18412 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 5.129 seconds (JVM running for 6.329)
-2020-05-09 10:08:25.628  INFO 21960 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 21960 (started by slabk in D:\Java Projects\Library)
-2020-05-09 10:08:25.631  INFO 21960 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
-2020-05-09 10:08:26.907  INFO 21960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:08:27.030  INFO 21960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98ms. Found 5 JPA repository interfaces.
-2020-05-09 10:08:27.980  INFO 21960 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:08:28.103  INFO 21960 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:08:28.359  INFO 21960 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:08:28.888  INFO 21960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:08:29.268  INFO 21960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:08:29.303  INFO 21960 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:08:31.379  INFO 21960 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:08:31.390  INFO 21960 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:08:34.251  WARN 21960 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:08:34.897  INFO 21960 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:08:35.787  INFO 21960 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:08:35.903  INFO 21960 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:08:36.253  INFO 21960 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:08:36.303  INFO 21960 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:08:36.346  INFO 21960 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:08:36.395  INFO 21960 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:08:36.740  INFO 21960 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:08:36.755  INFO 21960 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:08:36.775  INFO 21960 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:08:36.833  INFO 21960 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:08:36.863  INFO 21960 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:08:36.916  INFO 21960 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 11.884 seconds (JVM running for 13.831)
-2020-05-09 10:08:37.462  INFO 21960 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-09 10:08:37.464  INFO 21960 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:08:37.468  INFO 21960 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:08:37.474  INFO 21960 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-09 10:08:37.486  INFO 21960 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-09 10:16:14.137  INFO 1304 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 1304 (started by slabk in D:\Java Projects\Library)
-2020-05-09 10:16:14.140  INFO 1304 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
-2020-05-09 10:16:15.235  INFO 1304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:16:15.365  INFO 1304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 112ms. Found 5 JPA repository interfaces.
-2020-05-09 10:16:16.368  INFO 1304 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:16:16.512  INFO 1304 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:16:16.693  INFO 1304 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:16:17.189  INFO 1304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:16:17.367  INFO 1304 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:16:17.388  INFO 1304 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:16:18.513  INFO 1304 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:16:18.520  INFO 1304 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:16:19.642  WARN 1304 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:16:20.014  INFO 1304 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:16:20.589  INFO 1304 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:16:20.661  INFO 1304 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:16:20.984  INFO 1304 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:16:21.040  INFO 1304 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:16:21.077  INFO 1304 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:16:21.123  INFO 1304 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:16:21.365  INFO 1304 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:16:21.380  INFO 1304 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:16:21.405  INFO 1304 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:16:21.455  INFO 1304 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:16:21.498  INFO 1304 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:16:21.597  INFO 1304 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 7.964 seconds (JVM running for 9.166)
-2020-05-09 10:16:22.096  INFO 1304 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-09 10:16:22.098  INFO 1304 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:16:22.105  INFO 1304 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:16:22.111  INFO 1304 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-09 10:16:22.129  INFO 1304 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-09 10:22:55.763  INFO 25388 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 25388 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:22:55.766  INFO 25388 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:22:55.813  INFO 25388 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:22:55.814  INFO 25388 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:22:55.814  INFO 25388 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:22:56.764  INFO 25388 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:22:56.830  INFO 25388 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57ms. Found 5 JPA repository interfaces.
-2020-05-09 10:22:57.376  INFO 25388 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:22:57.384  INFO 25388 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:22:57.385  INFO 25388 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:22:57.521  INFO 25388 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:22:57.521  INFO 25388 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1706 ms
-2020-05-09 10:22:57.659  INFO 25388 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:22:57.722  INFO 25388 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:22:57.824  INFO 25388 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:22:57.897  INFO 25388 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:22:58.037  INFO 25388 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:22:58.049  INFO 25388 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:22:58.875  INFO 25388 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:22:58.881  INFO 25388 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:22:58.912  INFO 25388 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:22:58.914  INFO 25388 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: static com.example.library.service.BookService com.example.library.LibraryApplication.bookService
-2020-05-09 10:22:59.419  WARN 25388 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:22:59.516  INFO 25388 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:22:59.602  INFO 25388 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:22:59.632  INFO 25388 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:22:59.712  INFO 25388 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:22:59.752  INFO 25388 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:22:59.767  INFO 25388 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:22:59.790  INFO 25388 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:22:59.961  INFO 25388 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:22:59.966  INFO 25388 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:22:59.971  INFO 25388 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:22:59.987  INFO 25388 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:22:59.996  INFO 25388 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:23:00.343  INFO 25388 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:23:00.346  INFO 25388 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.957 seconds (JVM running for 6.308)
-2020-05-09 10:23:09.785  INFO 3996 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 3996 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:23:09.788  INFO 3996 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:23:09.856  INFO 3996 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:23:09.857  INFO 3996 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:23:09.866  INFO 3996 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:23:10.759  INFO 3996 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:23:10.822  INFO 3996 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 54ms. Found 5 JPA repository interfaces.
-2020-05-09 10:23:11.315  INFO 3996 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:23:11.322  INFO 3996 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:23:11.322  INFO 3996 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:23:11.428  INFO 3996 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:23:11.429  INFO 3996 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1563 ms
-2020-05-09 10:23:11.552  INFO 3996 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:23:11.604  INFO 3996 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:23:11.689  INFO 3996 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:23:11.759  INFO 3996 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:23:11.898  INFO 3996 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:23:11.910  INFO 3996 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:23:12.699  INFO 3996 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:23:12.706  INFO 3996 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:23:12.748  INFO 3996 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:23:12.751  INFO 3996 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: static com.example.library.service.BookService com.example.library.LibraryApplication.bookService
-2020-05-09 10:23:13.295  WARN 3996 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:23:13.390  INFO 3996 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:23:13.482  INFO 3996 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:23:13.514  INFO 3996 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:23:13.585  INFO 3996 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:23:13.616  INFO 3996 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:23:13.628  INFO 3996 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:23:13.647  INFO 3996 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:23:13.771  INFO 3996 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:23:13.777  INFO 3996 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:23:13.781  INFO 3996 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:23:13.796  INFO 3996 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:23:13.802  INFO 3996 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:23:14.125  INFO 3996 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:23:14.128  INFO 3996 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.704 seconds (JVM running for 5.973)
-2020-05-09 10:31:51.620  INFO 12576 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 12576 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:31:51.622  INFO 12576 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:31:51.693  INFO 12576 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:31:51.694  INFO 12576 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:31:51.694  INFO 12576 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:31:52.664  INFO 12576 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:31:52.720  INFO 12576 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48ms. Found 5 JPA repository interfaces.
-2020-05-09 10:31:53.218  INFO 12576 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:31:53.227  INFO 12576 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:31:53.227  INFO 12576 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:31:53.347  INFO 12576 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:31:53.348  INFO 12576 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1653 ms
-2020-05-09 10:31:53.497  INFO 12576 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:31:53.551  INFO 12576 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:31:53.636  INFO 12576 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:31:53.712  INFO 12576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:31:53.848  INFO 12576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:31:53.859  INFO 12576 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:31:54.641  INFO 12576 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:31:54.647  INFO 12576 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:31:54.678  INFO 12576 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:31:54.680  INFO 12576 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: static com.example.library.service.BookService com.example.library.LibraryApplication.bookService
-2020-05-09 10:31:55.193  WARN 12576 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:31:55.293  INFO 12576 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:31:55.377  INFO 12576 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:31:55.406  INFO 12576 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:31:55.481  INFO 12576 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:31:55.514  INFO 12576 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:31:55.527  INFO 12576 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:31:55.546  INFO 12576 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:31:55.678  INFO 12576 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:31:55.683  INFO 12576 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:31:55.688  INFO 12576 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:31:55.709  INFO 12576 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:31:55.716  INFO 12576 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:31:56.031  INFO 12576 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:31:56.033  INFO 12576 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.878 seconds (JVM running for 6.071)
-2020-05-09 10:31:56.035  INFO 12576 --- [restartedMain] com.example.library.LibraryApplication   : EXECUTING : command line runner
-2020-05-09 10:31:56.036  INFO 12576 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-05-09 10:31:56.042 ERROR 12576 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-java.lang.IllegalStateException: Failed to execute CommandLineRunner
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:768) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:322) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at com.example.library.LibraryApplication.main(LibraryApplication.java:17) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-Caused by: java.lang.NullPointerException: null
-	at com.example.library.LibraryApplication.run(LibraryApplication.java:27) ~[classes/:na]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:784) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	... 10 common frames omitted
-
-2020-05-09 10:31:56.046  INFO 12576 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-09 10:31:56.046  INFO 12576 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:31:56.048  INFO 12576 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:31:56.051  INFO 12576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-09 10:31:56.063  INFO 12576 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-09 10:34:59.970  INFO 2824 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 2824 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:34:59.972  INFO 2824 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:35:00.035  INFO 2824 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:35:00.036  INFO 2824 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:35:00.037  INFO 2824 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:35:01.010  INFO 2824 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:35:01.077  INFO 2824 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58ms. Found 5 JPA repository interfaces.
-2020-05-09 10:35:01.579  INFO 2824 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:35:01.585  INFO 2824 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:35:01.586  INFO 2824 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:35:01.719  INFO 2824 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:35:01.719  INFO 2824 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1682 ms
-2020-05-09 10:35:01.840  INFO 2824 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:35:01.893  INFO 2824 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:35:01.975  INFO 2824 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:35:02.042  INFO 2824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:35:02.183  INFO 2824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:35:02.194  INFO 2824 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:35:02.978  INFO 2824 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:35:02.984  INFO 2824 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:35:03.012  INFO 2824 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:35:03.014  INFO 2824 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: static com.example.library.service.BookService com.example.library.LibraryApplication.bookService
-2020-05-09 10:35:03.508  WARN 2824 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:35:03.620  INFO 2824 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:35:03.708  INFO 2824 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:35:03.746  INFO 2824 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:35:03.815  INFO 2824 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:35:03.847  INFO 2824 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:35:03.859  INFO 2824 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:35:03.878  INFO 2824 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:35:04.010  INFO 2824 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:35:04.015  INFO 2824 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:35:04.019  INFO 2824 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:35:04.035  INFO 2824 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:35:04.043  INFO 2824 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:35:04.358  INFO 2824 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:35:04.361  INFO 2824 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.787 seconds (JVM running for 5.955)
-2020-05-09 10:35:04.363  INFO 2824 --- [restartedMain] com.example.library.LibraryApplication   : EXECUTING : command line runner
-2020-05-09 10:35:04.364  INFO 2824 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-05-09 10:35:04.370 ERROR 2824 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
-
-java.lang.IllegalStateException: Failed to execute CommandLineRunner
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:768) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:322) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	at com.example.library.LibraryApplication.main(LibraryApplication.java:17) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-Caused by: java.lang.NullPointerException: null
-	at com.example.library.LibraryApplication.run(LibraryApplication.java:27) ~[classes/:na]
-	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:784) ~[spring-boot-2.2.6.RELEASE.jar:2.2.6.RELEASE]
-	... 10 common frames omitted
-
-2020-05-09 10:35:04.373  INFO 2824 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-09 10:35:04.374  INFO 2824 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:35:04.378  INFO 2824 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:35:04.381  INFO 2824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-09 10:35:04.390  INFO 2824 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2020-05-09 10:35:41.182  INFO 10108 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 10108 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:35:41.183  INFO 10108 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:35:41.219  INFO 10108 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:35:41.220  INFO 10108 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:35:41.221  INFO 10108 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:35:42.049  INFO 10108 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:35:42.104  INFO 10108 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48ms. Found 5 JPA repository interfaces.
-2020-05-09 10:35:42.597  INFO 10108 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:35:42.604  INFO 10108 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:35:42.605  INFO 10108 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:35:42.711  INFO 10108 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:35:42.711  INFO 10108 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1490 ms
-2020-05-09 10:35:42.831  INFO 10108 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:35:42.882  INFO 10108 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:35:42.966  INFO 10108 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:35:43.034  INFO 10108 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:35:43.171  INFO 10108 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:35:43.182  INFO 10108 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:35:44.005  INFO 10108 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:35:44.013  INFO 10108 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:35:44.055  INFO 10108 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:35:44.637  WARN 10108 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:35:44.732  INFO 10108 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:35:44.814  INFO 10108 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:35:44.847  INFO 10108 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:35:44.929  INFO 10108 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:35:44.960  INFO 10108 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:35:44.972  INFO 10108 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:35:44.991  INFO 10108 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:35:45.116  INFO 10108 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:35:45.120  INFO 10108 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:35:45.125  INFO 10108 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:35:45.140  INFO 10108 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:35:45.147  INFO 10108 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:35:45.465  INFO 10108 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:35:45.468  INFO 10108 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.721 seconds (JVM running for 5.905)
-2020-05-09 10:35:45.469  INFO 10108 --- [restartedMain] com.example.library.LibraryApplication   : EXECUTING : command line runner
-2020-05-09 10:35:45.566  INFO 10108 --- [restartedMain] com.example.library.LibraryApplication   : APPLICATION FINISHED
-2020-05-09 10:36:32.606  INFO 9784 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 9784 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:36:32.608  INFO 9784 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:36:32.675  INFO 9784 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:36:32.681  INFO 9784 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:36:32.682  INFO 9784 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:36:33.552  INFO 9784 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:36:33.611  INFO 9784 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51ms. Found 5 JPA repository interfaces.
-2020-05-09 10:36:34.107  INFO 9784 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:36:34.114  INFO 9784 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:36:34.114  INFO 9784 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:36:34.227  INFO 9784 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:36:34.227  INFO 9784 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1544 ms
-2020-05-09 10:36:34.346  INFO 9784 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:36:34.398  INFO 9784 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:36:34.485  INFO 9784 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:36:34.554  INFO 9784 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:36:34.698  INFO 9784 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:36:34.709  INFO 9784 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:36:35.513  INFO 9784 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:36:35.518  INFO 9784 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:36:35.547  INFO 9784 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:36:36.047  WARN 9784 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:36:36.151  INFO 9784 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:36:36.255  INFO 9784 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:36:36.289  INFO 9784 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:36:36.361  INFO 9784 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:36:36.399  INFO 9784 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:36:36.411  INFO 9784 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:36:36.433  INFO 9784 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:36:36.563  INFO 9784 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:36:36.568  INFO 9784 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:36:36.572  INFO 9784 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:36:36.586  INFO 9784 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:36:36.593  INFO 9784 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:36:36.930  INFO 9784 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:36:36.934  INFO 9784 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.743 seconds (JVM running for 5.939)
-2020-05-09 10:36:36.935  INFO 9784 --- [restartedMain] com.example.library.LibraryApplication   : EXECUTING : command line runner
-2020-05-09 10:36:37.059  INFO 9784 --- [restartedMain] com.example.library.LibraryApplication   : APPLICATION FINISHED
-2020-05-09 10:44:57.632  INFO 26132 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 26132 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
-2020-05-09 10:44:57.633  INFO 26132 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
-2020-05-09 10:44:57.680  INFO 26132 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
-2020-05-09 10:44:57.681  INFO 26132 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-09 10:44:57.681  INFO 26132 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-09 10:44:58.488  INFO 26132 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:44:58.543  INFO 26132 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 48ms. Found 5 JPA repository interfaces.
-2020-05-09 10:44:59.026  INFO 26132 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2020-05-09 10:44:59.033  INFO 26132 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-05-09 10:44:59.033  INFO 26132 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-09 10:44:59.212  INFO 26132 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-05-09 10:44:59.212  INFO 26132 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1530 ms
-2020-05-09 10:44:59.350  INFO 26132 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:44:59.399  INFO 26132 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:44:59.485  INFO 26132 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:44:59.557  INFO 26132 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:44:59.710  INFO 26132 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:44:59.725  INFO 26132 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:45:00.663  INFO 26132 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:45:00.669  INFO 26132 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:45:00.710  INFO 26132 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2020-05-09 10:45:01.262  WARN 26132 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:45:01.357  INFO 26132 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:45:01.449  INFO 26132 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:45:01.479  INFO 26132 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:45:01.548  INFO 26132 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:45:01.580  INFO 26132 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:45:01.592  INFO 26132 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:45:01.612  INFO 26132 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:45:01.739  INFO 26132 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:45:01.743  INFO 26132 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:45:01.748  INFO 26132 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:45:01.762  INFO 26132 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:45:01.769  INFO 26132 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:45:02.094  INFO 26132 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2020-05-09 10:45:02.097  INFO 26132 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 4.916 seconds (JVM running for 6.036)
-2020-05-09 10:45:02.098  INFO 26132 --- [restartedMain] com.example.library.LibraryApplication   : EXECUTING : command line runner
-2020-05-09 10:45:02.099  INFO 26132 --- [restartedMain] com.example.library.LibraryApplication   : APPLICATION FINISHED
-2020-05-09 10:45:20.123  INFO 26132 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-05-09 10:45:20.124  INFO 26132 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-05-09 10:45:20.132  INFO 26132 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
-2020-05-09 10:46:29.286  INFO 16408 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 16408 (started by slabk in D:\Java Projects\Library)
-2020-05-09 10:46:29.288  INFO 16408 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
-2020-05-09 10:46:30.427  INFO 16408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-05-09 10:46:30.540  INFO 16408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99ms. Found 5 JPA repository interfaces.
-2020-05-09 10:46:31.288  INFO 16408 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-05-09 10:46:31.384  INFO 16408 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
-2020-05-09 10:46:31.541  INFO 16408 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-05-09 10:46:32.140  INFO 16408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2020-05-09 10:46:32.315  INFO 16408 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2020-05-09 10:46:32.338  INFO 16408 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2020-05-09 10:46:33.409  INFO 16408 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-05-09 10:46:33.420  INFO 16408 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:46:34.403  WARN 16408 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-05-09 10:46:34.764  INFO 16408 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-05-09 10:46:35.238  INFO 16408 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:46:35.318  INFO 16408 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2020-05-09 10:46:35.720  INFO 16408 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
-2020-05-09 10:46:35.775  INFO 16408 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-05-09 10:46:35.809  INFO 16408 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-05-09 10:46:35.848  INFO 16408 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-05-09 10:46:36.066  INFO 16408 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
-2020-05-09 10:46:36.076  INFO 16408 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
-2020-05-09 10:46:36.089  INFO 16408 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
-2020-05-09 10:46:36.150  INFO 16408 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
-2020-05-09 10:46:36.169  INFO 16408 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
-2020-05-09 10:46:36.223  INFO 16408 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 7.396 seconds (JVM running for 8.555)
-2020-05-09 10:46:36.226  INFO 16408 --- [main] com.example.library.LibraryApplication   : EXECUTING : command line runner
-2020-05-09 10:46:36.488  INFO 16408 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
-2020-05-09 10:46:36.491  INFO 16408 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2020-05-09 10:46:36.499  INFO 16408 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-05-09 10:46:36.503  INFO 16408 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2020-05-09 10:46:36.540  INFO 16408 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2020-05-11 17:58:16.743  INFO 28192 --- [restartedMain] com.example.library.LibraryApplication   : Starting LibraryApplication on DESKTOP-D3CHORB with PID 28192 (D:\Java Projects\Library\target\classes started by slabk in D:\Java Projects\Library)
+2020-05-11 17:58:16.746  INFO 28192 --- [restartedMain] com.example.library.LibraryApplication   : The following profiles are active: dev
+2020-05-11 17:58:19.051  INFO 28192 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\slabk\.m2\repository\org\glassfish\jaxb\jaxb-runtime\2.3.2\jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/C:/Users/slabk/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2020-05-11 17:58:19.192  INFO 28192 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-11 17:58:19.192  INFO 28192 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-11 17:58:25.680  INFO 28192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-11 17:58:25.862  INFO 28192 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 172ms. Found 5 JPA repository interfaces.
+2020-05-11 17:58:27.868  INFO 28192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-05-11 17:58:27.891  INFO 28192 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-05-11 17:58:27.891  INFO 28192 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-11 17:58:28.065  INFO 28192 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-05-11 17:58:28.066  INFO 28192 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8873 ms
+2020-05-11 17:58:28.394  INFO 28192 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-11 17:58:28.491  INFO 28192 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-11 17:58:28.721  INFO 28192 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-11 17:58:28.908  INFO 28192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-11 17:58:29.450  INFO 28192 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-11 17:58:29.491  INFO 28192 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-05-11 17:58:34.614  INFO 28192 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-11 17:58:34.717  INFO 28192 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 17:58:34.828  INFO 28192 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-05-11 17:58:36.126  WARN 28192 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-11 17:58:36.301  INFO 28192 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-05-11 17:58:36.425  INFO 28192 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-11 17:58:36.481  INFO 28192 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-05-11 17:58:36.708  INFO 28192 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-11 17:58:36.797  INFO 28192 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-05-11 17:58:36.858  INFO 28192 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-05-11 17:58:36.883  INFO 28192 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-05-11 17:58:37.095  INFO 28192 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2020-05-11 17:58:37.101  INFO 28192 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
+2020-05-11 17:58:37.106  INFO 28192 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
+2020-05-11 17:58:37.122  INFO 28192 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
+2020-05-11 17:58:37.130  INFO 28192 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
+2020-05-11 17:58:37.492  INFO 28192 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2020-05-11 17:58:37.516  INFO 28192 --- [restartedMain] com.example.library.LibraryApplication   : Started LibraryApplication in 23.86 seconds (JVM running for 32.696)
+2020-05-11 17:58:37.518  INFO 28192 --- [restartedMain] com.example.library.LibraryApplication   : EXECUTING : command line runner
+2020-05-11 17:58:37.519  INFO 28192 --- [restartedMain] com.example.library.LibraryApplication   : APPLICATION FINISHED
+2020-05-11 20:14:05.196  INFO 23492 --- [main] c.e.library.LibraryApplicationTests      : Starting LibraryApplicationTests on DESKTOP-D3CHORB with PID 23492 (started by slabk in D:\Java Projects\Library)
+2020-05-11 20:14:05.248  INFO 23492 --- [main] c.e.library.LibraryApplicationTests      : The following profiles are active: dev
+2020-05-11 20:14:09.849  INFO 23492 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-05-11 20:14:10.205  INFO 23492 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 302ms. Found 5 JPA repository interfaces.
+2020-05-11 20:14:12.806  INFO 23492 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-11 20:14:13.595  INFO 23492 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-05-11 20:14:14.270  INFO 23492 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-11 20:14:16.210  INFO 23492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-11 20:14:17.671  INFO 23492 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-11 20:14:18.090  INFO 23492 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2020-05-11 20:14:23.383  INFO 23492 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-11 20:14:23.417  INFO 23492 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 20:14:25.208  WARN 23492 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-11 20:14:25.977  INFO 23492 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-05-11 20:14:27.121  INFO 23492 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-11 20:14:27.272  INFO 23492 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2020-05-11 20:14:27.760  INFO 23492 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2020-05-11 20:14:27.843  INFO 23492 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-05-11 20:14:27.883  INFO 23492 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-05-11 20:14:27.931  INFO 23492 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-05-11 20:14:28.277  INFO 23492 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_1
+2020-05-11 20:14:28.298  INFO 23492 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: filterUsingGET_1
+2020-05-11 20:14:28.316  INFO 23492 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_1
+2020-05-11 20:14:28.387  INFO 23492 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: deleteUsingDELETE_2
+2020-05-11 20:14:28.417  INFO 23492 --- [main] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: listUsingGET_2
+2020-05-11 20:14:28.503  INFO 23492 --- [main] c.e.library.LibraryApplicationTests      : Started LibraryApplicationTests in 25.884 seconds (JVM running for 33.821)
+2020-05-11 20:14:28.525  INFO 23492 --- [main] com.example.library.LibraryApplication   : EXECUTING : command line runner
+2020-05-11 20:14:29.023  INFO 23492 --- [SpringContextShutdownHook] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2020-05-11 20:14:29.027  INFO 23492 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-11 20:14:29.031  INFO 23492 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-11 20:14:29.047  INFO 23492 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-11 20:14:29.068  INFO 23492 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

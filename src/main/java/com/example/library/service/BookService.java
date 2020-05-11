@@ -37,17 +37,21 @@ public class BookService {
     }
 
     public List<Book> listByNameOrAuthor(String filter){
-        return (List<Book>) bookRepository.findBooksByNameContainsOrAuthorContains(filter,filter);
+        return bookRepository.findBooksByNameContainsOrAuthorContains(filter,filter);
+    }
+
+    public List<Book> listByName(String filter){
+        return bookRepository.findBooksByNameContains(filter);
     }
 
     public boolean exist(Long id){
         return bookRepository.existsById(id);
     }
 
-    public void allBooksToConsole(){
-        System.out.println("BOOKS:");
-        for (Book book:
-                listAll()) {
+    public void booksToConsole(List<Book> books) {
+        System.out.println("Book:");
+        for (Book book :
+                books) {
             System.out.print("Book-");
             book.toConsole();
         }

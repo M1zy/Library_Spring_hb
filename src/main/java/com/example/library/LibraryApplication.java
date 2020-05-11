@@ -33,17 +33,28 @@ public class LibraryApplication implements CommandLineRunner {
 		if(args.length==0) {
 			System.out.println("You have not provided any arguments!");
 		}else {
-			for (String arg:
-					args) {
-				switch(arg){
+			for (int i=0;i<args.length;i++) {
+				switch(args[i]){
 					case "allBooks" : {
-						bookService.allBooksToConsole();
+						bookService.booksToConsole(bookService.listAll());
+						break;
 					}
 					case "allLibraries":{
 						libraryService.allLibrariesToConsole();
+						break;
 					}
 					case "allUsers":{
 						userService.allUsersToConsole();
+						break;
+					}
+					case "book-name":{
+						try {
+							bookService.booksToConsole(bookService.listByName(args[i+1]));
+						}
+						catch (Exception ex){
+							bookService.booksToConsole(bookService.listAll());
+						}
+						break;
 					}
 				}
 			}
