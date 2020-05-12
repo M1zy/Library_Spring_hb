@@ -1,5 +1,6 @@
 HELP.md
 target/
+logs/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -15,6 +16,7 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
+logs
 *.iws
 *.iml
 *.ipr
