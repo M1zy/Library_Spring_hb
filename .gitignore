@@ -16,7 +16,6 @@ logs/
 
 ### IntelliJ IDEA ###
 .idea
-logs
 *.iws
 *.iml
 *.ipr
