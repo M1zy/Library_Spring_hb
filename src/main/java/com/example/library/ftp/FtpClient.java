@@ -59,8 +59,8 @@ public class FtpClient {
                 .collect(Collectors.toList());
     }
 
-    public void putFileToPath(ByteArrayInputStream byteArrayInputStream, String path) throws IOException {
-        ftp.storeFile(path, byteArrayInputStream);
+    public void putFileToPath(InputStream inputStream, String path) throws IOException {
+        ftp.storeFile(path, inputStream);
     }
 
     public void downloadFile(String source, String destination) throws IOException {
