@@ -14,6 +14,7 @@ public class Book extends Essence {
     private String author;
     private Integer year;
     private String description;
+    private String file;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,

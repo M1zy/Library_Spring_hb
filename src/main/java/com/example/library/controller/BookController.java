@@ -7,6 +7,7 @@ import com.example.library.mapper.Mapper;
 import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
 import com.example.library.util.BookGenerator;
+import com.example.library.util.ExcelGenerator;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,11 +18,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.library.ftp.FtpClient;
+
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -83,13 +90,8 @@ public class BookController {
         if(!bookService.exist(bookDto.getId())){
             throw new RecordNotFoundException("Invalid book id : " + bookDto.getId());
         }
-            Book storedBook = bookService.get(bookDto.getId());
             Book book = mapper.convertToEntity(bookDto);
-            storedBook.setAuthor(book.getAuthor());
-            storedBook.setDescription(book.getDescription());
-            storedBook.setName(book.getName());
-            storedBook.setYear(book.getYear());
-            bookService.save(storedBook);
+            bookService.save(book);
             return new ResponseEntity<>(bookDto, HttpStatus.OK);
     }
 
@@ -123,5 +125,50 @@ public class BookController {
                     .headers(headers)
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(new InputStreamResource(in));
+    }
+
+    @RequestMapping(value = "/listOfBooks", method = RequestMethod.GET)
+    public List<String> listFiles() throws IOException {
+         FtpClient ftpClient = new FtpClient();
+         ftpClient.open();
+         List<String> listFiles = (List<String>) ftpClient.listFiles("/Books/");
+         ftpClient.close();
+        return listFiles;
+    }
+
+    @RequestMapping(value="/uploadReport/{id}", method = RequestMethod.POST)
+    public ResponseEntity upload(@PathVariable Long id) throws URISyntaxException, IOException {
+        try {
+            Book book = bookService.get(id);
+            FtpClient ftpClient = new FtpClient();
+            ftpClient.open();
+            BookGenerator bookGenerator = new BookGenerator();
+            String filename = book.getName()+bookGenerator.dateFormat(new Date());
+            ByteArrayInputStream in = bookGenerator.toExcel(book);
+            ftpClient.putFileToPath(in,"/Books/"+filename+".xlsx");
+            book.setFile(filename+".xlsx");
+            bookService.save(book);
+            in.close();
+            ftpClient.close();
+            return new ResponseEntity("Book report was uploaded successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            throw new RecordNotFoundException("Invalid book id : " + id);
+        }
+    }
+
+    @RequestMapping(value="/downloadReport/{id}", method = RequestMethod.POST)
+    public ResponseEntity download(@PathVariable Long id) {
+        try {
+            Book book = bookService.get(id);
+            FtpClient ftpClient = new FtpClient();
+            ftpClient.open();
+            ftpClient.downloadFile("/Books/"+book.getFile(), "Book_report_"+id+".xlsx");
+            ftpClient.close();
+            return new ResponseEntity("Book report was downloaded successfully", HttpStatus.OK);
+        }
+        catch (Exception e){
+            throw new RecordNotFoundException("No such book record");
+        }
     }
 }
