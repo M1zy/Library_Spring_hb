@@ -79,11 +79,8 @@ public class LibraryController {
         if(!libraryService.exist(libraryDto.getId())){
             throw new RecordNotFoundException("Invalid library id : " + libraryDto.getId());
         }
-        Library storedLibrary = libraryService.get(libraryDto.getId());
-        Library library=mapper.convertToEntity(libraryDto);
-        storedLibrary.setName(library.getName());
-        storedLibrary.setAddress(library.getAddress());
-        libraryService.save(storedLibrary);
+        Library library = mapper.convertToEntity(libraryDto);
+        libraryService.save(library);
         return new ResponseEntity<>(libraryDto, HttpStatus.OK);
     }
 

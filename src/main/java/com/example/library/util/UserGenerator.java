@@ -23,6 +23,7 @@ public class UserGenerator extends ExcelGenerator<User> {
             rentsToExcel(workbook,sheet,user.getBookRentSet(),rowIdx);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             workbook.write(outputStream);
+            outputStream.close();
             return new ByteArrayInputStream(outputStream.toByteArray());
         }
         catch(IOException ex){

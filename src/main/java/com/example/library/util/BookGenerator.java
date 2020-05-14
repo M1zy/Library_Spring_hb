@@ -23,6 +23,7 @@ public class BookGenerator extends ExcelGenerator<Book> {
             librariesToExcel(workbook,sheet,book.getLibraries(),rowIdx);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             workbook.write(outputStream);
+            outputStream.close();
             return new ByteArrayInputStream(outputStream.toByteArray());
         }
         catch(IOException ex){

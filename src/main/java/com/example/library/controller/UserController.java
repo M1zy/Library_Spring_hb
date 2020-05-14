@@ -91,9 +91,7 @@ public class UserController {
         if(!bookService.exist(userDto.getId())){
             throw new RecordNotFoundException("Invalid user id : " + userDto.getId());
         }
-        User user = userService.get(userDto.getId());
         User newUser = mapper.convertToEntity(userDto);
-        newUser.setBookRentSet(user.getBookRentSet());
         userService.save(newUser);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

@@ -102,9 +102,9 @@ public abstract class ExcelGenerator<T extends Essence>{
         return step;
     }
 
-    protected File byteArrayInputStreamToFile(ByteArrayInputStream byteArrayInputStream,
+    public File byteArrayInputStreamToFile(ByteArrayInputStream byteArrayInputStream,
                                             String filename) throws IOException {
-        File report=new File(filename+".xlsx");
+        File report = new File(filename+".xlsx");
         FileOutputStream fileOutputStream = new FileOutputStream(report);
         IOUtils.copy(byteArrayInputStream, fileOutputStream);
         fileOutputStream.close();

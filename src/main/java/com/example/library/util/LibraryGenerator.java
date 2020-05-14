@@ -22,6 +22,7 @@ public class LibraryGenerator extends ExcelGenerator<Library> {
             rentsToExcel(workbook, sheet, library.getBookRentSet(), rowIdx);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             workbook.write(outputStream);
+            outputStream.close();
             return new ByteArrayInputStream(outputStream.toByteArray());
         } catch (IOException ex) {
             ex.printStackTrace();
