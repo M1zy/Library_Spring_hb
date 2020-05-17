@@ -1,4 +1,5 @@
 package com.example.library.controller;
+
 import com.example.library.domain.Book;
 import com.example.library.domain.Library;
 import com.example.library.dto.BookDto;
@@ -18,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.library.ftp.FtpClient;
 import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
@@ -41,6 +41,9 @@ public class BookController {
 
     @Autowired
     private Mapper mapper = new Mapper();
+
+    @Autowired
+    private Transfer transfer;
 
     @RequestMapping(value = "/list", method=RequestMethod.GET)
     public List<BookDto> list() {
@@ -125,10 +128,7 @@ public class BookController {
 
     @RequestMapping(value = "/listOfBooks", method = RequestMethod.GET)
     public List<String> listFiles() throws IOException {
-         FtpClient ftpClient = new FtpClient();
-         ftpClient.open();
-         List<String> listFiles = (List<String>) ftpClient.listFiles("/Books/");
-         ftpClient.close();
+         List<String> listFiles = transfer.files("");
         return listFiles;
     }
 
@@ -136,7 +136,6 @@ public class BookController {
     public ResponseEntity<?> uploadFile(@PathVariable Long id,@RequestPart(required = true) MultipartFile file) {
         try {
             Book book = bookService.get(id);
-            Transfer transfer = new Transfer();
             book.setFile(file.getOriginalFilename());
             transfer.uploadFile(file);
             bookService.save(book);
@@ -151,12 +150,11 @@ public class BookController {
     public ResponseEntity<?> download(@PathVariable Long id) {
         try {
             Book book = bookService.get(id);
-            Transfer transfer = new Transfer();
             transfer.downloadFile(book);
             return new ResponseEntity<>("Book report was downloaded successfully", HttpStatus.OK);
         }
         catch (Exception e){
-            throw new RecordNotFoundException("No such book record");
+            throw new RecordNotFoundException(bookService.get(id).getFile());
         }
     }
 }
