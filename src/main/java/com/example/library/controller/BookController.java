@@ -4,7 +4,7 @@ import com.example.library.domain.Book;
 import com.example.library.domain.Library;
 import com.example.library.dto.BookDto;
 import com.example.library.exception.RecordNotFoundException;
-import com.example.library.ftp.Transfer;
+import com.example.library.ftp.FtpService;
 import com.example.library.mapper.Mapper;
 import com.example.library.service.BookService;
 import com.example.library.service.LibraryService;
@@ -43,7 +43,7 @@ public class BookController {
     private Mapper mapper = new Mapper();
 
     @Autowired
-    private Transfer transfer;
+    private FtpService ftpService;
 
     @RequestMapping(value = "/list", method=RequestMethod.GET)
     public List<BookDto> list() {
@@ -128,7 +128,7 @@ public class BookController {
 
     @RequestMapping(value = "/listOfBooks", method = RequestMethod.GET)
     public List<String> listFiles() throws IOException {
-         List<String> listFiles = transfer.files("");
+         List<String> listFiles = ftpService.listFiles("");
         return listFiles;
     }
 
@@ -137,7 +137,7 @@ public class BookController {
         try {
             Book book = bookService.get(id);
             book.setFile(file.getOriginalFilename());
-            transfer.uploadFile(file);
+            ftpService.uploadFile(file);
             bookService.save(book);
             return new ResponseEntity<>("Book report was uploaded successfully", HttpStatus.OK);
         }
@@ -150,7 +150,7 @@ public class BookController {
     public ResponseEntity<?> download(@PathVariable Long id) {
         try {
             Book book = bookService.get(id);
-            transfer.downloadFile(book);
+            ftpService.downloadFile(book);
             return new ResponseEntity<>("Book report was downloaded successfully", HttpStatus.OK);
         }
         catch (Exception e){
