@@ -6,7 +6,6 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
-List<Book> findBooksByNameContainsOrAuthorContains(String name,String author);
 List<Book> findBooksByNameContains(String name);
 Book findBookById(Long index);
 }

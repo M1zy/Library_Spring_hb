@@ -62,7 +62,7 @@ public class BookController {
 
     @RequestMapping(value = "/search/{keyword}",method = RequestMethod.GET)
     public List<BookDto>  filter(@PathVariable String keyword) {
-        List<Book> books = bookService.listByNameOrAuthor(keyword);
+        List<Book> books = bookService.listByName(keyword);
         return books.stream().map(mapper::convertToDto).collect(Collectors.toList());
     }
 
@@ -128,7 +128,7 @@ public class BookController {
 
     @RequestMapping(value = "/listOfBooks", method = RequestMethod.GET)
     public List<String> listFiles() throws IOException {
-         List<String> listFiles = ftpService.listFiles("");
+         List<String> listFiles = ftpService.listFilenames("");
         return listFiles;
     }
 
@@ -136,7 +136,7 @@ public class BookController {
     public ResponseEntity<?> uploadFile(@PathVariable Long id,@RequestPart(required = true) MultipartFile file) {
         try {
             Book book = bookService.get(id);
-            book.setFile(file.getOriginalFilename());
+            book.setPath(file.getOriginalFilename());
             ftpService.uploadFile(file);
             bookService.save(book);
             return new ResponseEntity<>("Book report was uploaded successfully", HttpStatus.OK);
@@ -154,7 +154,7 @@ public class BookController {
             return new ResponseEntity<>("Book report was downloaded successfully", HttpStatus.OK);
         }
         catch (Exception e){
-            throw new RecordNotFoundException(bookService.get(id).getFile());
+            throw new RecordNotFoundException(bookService.get(id).getPath());
         }
     }
 }

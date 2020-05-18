@@ -36,10 +36,6 @@ public class BookService {
         return bookRepository.findById(id).get().getLibraries();
     }
 
-    public List<Book> listByNameOrAuthor(String filter){
-        return bookRepository.findBooksByNameContainsOrAuthorContains(filter,filter);
-    }
-
     public List<Book> listByName(String filter){
         return bookRepository.findBooksByNameContains(filter);
     }

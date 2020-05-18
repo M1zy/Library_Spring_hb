@@ -11,10 +11,12 @@ import java.util.Set;
 @NoArgsConstructor
 public class Book extends Essence {
 
-    private String author;
+    @ManyToOne
+    @JoinColumn(name="author_id",nullable = false)
+    private Author author;
     private Integer year;
     private String description;
-    private String file;
+    private String path;
 
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
@@ -29,7 +31,7 @@ public class Book extends Essence {
     @ManyToOne(cascade = CascadeType.ALL)
     private BookRent bookRentSet;
 
-    public Book(String name,String author, Integer year,
+    public Book(String name,Author author, Integer year,
                 String description,Set<Library> libraries) {
         super(name);
         this.author = author;
@@ -50,6 +52,6 @@ public class Book extends Essence {
     }
 
     public void toConsole(){
-        System.out.println("Id:"+ getId()+"; Name:"+getName()+"; Author:"+ getAuthor()+";");
+        System.out.println("Id:"+ getId()+"; Name:"+getName()+"; Author:"+ getAuthor().getName()+";");
     }
 }
