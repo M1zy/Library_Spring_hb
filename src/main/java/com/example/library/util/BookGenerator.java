@@ -42,7 +42,7 @@ public class BookGenerator extends ExcelGenerator<Book> {
             name.append("Book_");
             name.append(book.getName());
             name.append("_Author_");
-            name.append(book.getAuthor());
+            name.append(book.getAuthor().getName());
             name.append("_report_");
             name.append(date);
             report = new Report(name.toString(),
