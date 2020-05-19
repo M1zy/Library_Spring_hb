@@ -14,8 +14,7 @@ public class BookDto {
     @NotEmpty(message = "name must not be empty")
     private String name;
 
-    @NotEmpty(message = "author must not be empty")
-    private String author;
+    private Long author_id;
 
     private Integer year;
 

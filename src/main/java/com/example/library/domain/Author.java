@@ -3,6 +3,8 @@ package com.example.library.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
@@ -16,8 +18,8 @@ public class Author extends Essence {
 
     private String country;
 
-    @OneToMany
-    private Set<Book> books=new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Book> books = new HashSet<>();
 
     public void addBook(Book book){
         book.setAuthor(this);

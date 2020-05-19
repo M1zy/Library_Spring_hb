@@ -26,7 +26,7 @@ public abstract class ExcelGenerator<T extends Essence>{
     protected static void fillRow(Book book,Row row){
         row.createCell(0).setCellValue(book.getId());
         row.createCell(1).setCellValue(book.getName());
-        row.createCell(2).setCellValue(book.getAuthor_id());
+        row.createCell(2).setCellValue(book.getAuthor().getName());
         row.createCell(3).setCellValue(book.getYear());
         row.createCell(4).setCellValue(book.getDescription());
     }

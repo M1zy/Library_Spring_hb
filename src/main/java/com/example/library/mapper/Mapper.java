@@ -1,23 +1,15 @@
 package com.example.library.mapper;
 
-import com.example.library.domain.Book;
-import com.example.library.domain.BookRent;
-import com.example.library.domain.Library;
-import com.example.library.domain.User;
-import com.example.library.dto.BookDto;
-import com.example.library.dto.LibraryDto;
-import com.example.library.dto.RentDto;
-import com.example.library.dto.UserDto;
-import com.example.library.service.BookRentService;
-import com.example.library.service.BookService;
-import com.example.library.service.LibraryService;
-import com.example.library.service.UserService;
+import com.example.library.domain.*;
+import com.example.library.dto.*;
+import com.example.library.service.*;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import java.text.ParseException;
 import java.util.stream.Collectors;
 
+@Log4j2
 @Controller
 public class Mapper {
     @Autowired
@@ -33,18 +25,27 @@ public class Mapper {
     private ModelMapper modelMapper;
 
     @Autowired
-    private BookRentService bookRentService;
+    private AuthorService authorService;
 
-    public BookDto convertToDto(Book book)  {
+    public BookDto convertToDto(Book book) {
         BookDto bookDto = modelMapper.map(book, BookDto.class);
-        bookDto.setLibraryIds(book.getLibraries().stream().map(x->x.getId()).collect(Collectors.toSet()));
+        bookDto.setLibraryIds(book.getLibraries().stream().map(x -> x.getId()).collect(Collectors.toSet()));
+        if(book.getAuthor()!=null) {
+            bookDto.setAuthor_id(book.getAuthor().getId());
+        }
         return bookDto;
     }
 
-    public Book convertToEntity(BookDto bookDto) throws ParseException {
+    public Book convertToEntity(BookDto bookDto) {
         Book book = modelMapper.map(bookDto, Book.class);
-        if (bookDto.getId() != null&&bookDto.getLibraryIds()!=null) {
-            book.setLibraries(bookDto.getLibraryIds().stream().map(x->libraryService.get(x)).collect(Collectors.toSet()));
+        try {
+            book.setLibraries(bookDto.getLibraryIds().stream().map(x -> libraryService.get(x)).collect(Collectors.toSet()));
+            Author author = authorService.get(bookDto.getAuthor_id());
+            author.addBook(book);
+            book.setAuthor(author);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
         }
         return book;
     }
@@ -55,9 +56,9 @@ public class Mapper {
         return libraryDto;
     }
 
-    public Library convertToEntity(LibraryDto libraryDto) throws ParseException {
+    public Library convertToEntity(LibraryDto libraryDto) {
         Library library = modelMapper.map(libraryDto,Library.class);
-        if (libraryDto.getId() != null&&libraryDto.getBookIds()!=null) {
+        if (libraryDto.getId() != null && libraryDto.getBookIds() != null) {
             library.setBooks(libraryDto.getBookIds().stream().map(x->bookService.get(x)).collect(Collectors.toSet()));
         }
         return library;
@@ -68,7 +69,7 @@ public class Mapper {
         return userDto;
     }
 
-    public User convertToEntity(UserDto userDto) throws ParseException {
+    public User convertToEntity(UserDto userDto) {
         User user = modelMapper.map(userDto,User.class);
             if(userService.exist(user.getId())){
             User oldUser=userService.get(user.getId());
@@ -85,5 +86,30 @@ public class Mapper {
             bookRent.setUser(userService.get(bookRent.getUser().getId()));
         }
         return bookRent;
+    }
+
+    public AuthorDto convertToDto(Author author){
+        AuthorDto authorDto = modelMapper.map(author,AuthorDto.class);
+        try {
+            authorDto.setBookIds(author.getBooks().stream().map(x->x.getId()).collect(Collectors.toSet()));
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return authorDto;
+    }
+
+    public Author convertToEntity(AuthorDto authorDto) {
+        Author author = modelMapper.map(authorDto, Author.class);
+        try {
+            for (Long i :
+                    authorDto.getBookIds()) {
+                author.addBook(bookService.get(i));
+            }
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return author;
     }
 }

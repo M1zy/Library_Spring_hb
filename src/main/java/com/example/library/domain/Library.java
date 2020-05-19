@@ -14,11 +14,11 @@ public class Library extends Essence{
     private String address;
 
     @ManyToMany(mappedBy = "libraries")
-    private Set<Book> books=new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "library_id")
-    private Set<BookRent> bookRentSet =new HashSet<BookRent>();
+    private Set<BookRent> bookRentSet = new HashSet<BookRent>();
 
     public Library(String name,String address,Set<Book> books) {
         super(name);

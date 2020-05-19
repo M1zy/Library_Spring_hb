@@ -67,7 +67,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ResponseEntity<BookDto> saveBook(@Valid @RequestBody BookDto bookDto) throws ParseException {
+    public ResponseEntity<BookDto> saveBook(@Valid @RequestBody BookDto bookDto){
             Book book = mapper.convertToEntity(bookDto);
             bookService.save(book);
             return new ResponseEntity<>(bookDto, HttpStatus.OK);
