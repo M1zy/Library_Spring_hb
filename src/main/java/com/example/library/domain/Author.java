@@ -3,10 +3,7 @@ package com.example.library.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,11 +15,20 @@ public class Author extends Essence {
 
     private String country;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(name = "book_authors",
+            joinColumns = @JoinColumn(name = "authors_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
     private Set<Book> books = new HashSet<>();
 
     public void addBook(Book book){
-        book.setAuthor(this);
+        Set<Author> authors = book.getAuthors();
+        authors.add(this);
+        book.setAuthors(authors);
         books.add(book);
     }
 
