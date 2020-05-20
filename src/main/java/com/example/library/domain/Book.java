@@ -11,47 +11,68 @@ import java.util.Set;
 @NoArgsConstructor
 public class Book extends Essence {
 
-    @ManyToOne
-    @JoinColumn(name="author_id",nullable = false)
-    private Author author;
-    private Integer year;
-    private String description;
-    private String path;
-
     @ManyToMany(cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
-    @JoinTable(name = "book_registration",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "library_id")
-    )
-    private Set<Library> libraries;
+    private Set<Author> authors = new HashSet<>();
+
+    private Integer year;
+    private String description;
+    private String path;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "book_id")
+    private Set<BookRegistration> bookRegistrations = new HashSet<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     private BookRent bookRentSet;
 
-    public Book(String name,Author author, Integer year,
-                String description,Set<Library> libraries) {
+    public Book(String name,Set<Author> authors, Integer year,
+                String description,Set<BookRegistration> bookRegistrations) {
         super(name);
-        this.author = author;
+        this.authors = authors;
         this.year = year;
         this.description = description;
-        this.libraries=libraries;
+        this.bookRegistrations = bookRegistrations;
     }
 
-    public void addLibrary(Library library){
-        Set<Book> books=library.getBooks();
+    public void addRegistration(BookRegistration registration){
+        bookRegistrations.add(registration);
+    }
+
+    public boolean takeBook(Library library){
+        for(BookRegistration bookRegistration :
+        bookRegistrations){
+            if(bookRegistration.getLibrary() == library){
+                if(bookRegistration.getCount()>=1){
+                    bookRegistrations.remove(bookRegistration);
+                    bookRegistrations.add(new BookRegistration(bookRegistration.getLibrary(),
+                            bookRegistration.getBook(),bookRegistration.getCount()-1));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void addAuthor(Author author){
+        Set<Book> books = author.getBooks();
         books.add(this);
-        library.setBooks(books);
-        libraries.add(library);
-    }
-
-    public void removeLibrary(Library library){
-        libraries.remove(library);
+        author.setBooks(books);
+        authors.add(author);
     }
 
     public void toConsole(){
-        System.out.println("Id:"+ getId()+"; Name:"+getName()+"; Author:"+ getAuthor().getName()+";");
+        System.out.println("Id:"+ getId()+"; Name:"+getName()+"; Year:"+ getYear()+";");
+    }
+
+    public Set<Library> getLibraries(){
+        Set<Library> libraries = new HashSet<>();
+        for (BookRegistration bookRegistration:
+                bookRegistrations) {
+            libraries.add(bookRegistration.getLibrary());
+        }
+        return libraries;
     }
 }

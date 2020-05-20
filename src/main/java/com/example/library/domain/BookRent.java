@@ -23,7 +23,7 @@ public class BookRent {
     private User user;
 
     @OneToMany
-    private Set<Book> books=new HashSet<>();
+    private Set<Book> books = new HashSet<>();
 
     public BookRent(Set<Book> books,Library library,User user){
         this.books=books;

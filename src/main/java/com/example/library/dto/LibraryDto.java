@@ -16,6 +16,4 @@ public class LibraryDto {
     @NotEmpty(message = "address must not be empty")
     private String address;
 
-    private Set<Long> bookIds;
-
 }

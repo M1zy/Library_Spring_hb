@@ -14,19 +14,9 @@ public class BookDto {
     @NotEmpty(message = "name must not be empty")
     private String name;
 
-    private Long author_id;
+    private Set<Long> authorIds = new HashSet<>();
 
     private Integer year;
 
     private String description;
-
-    private Set<Long> libraryIds=new HashSet<>();
-
-    public void addLibraryId(Long id){
-        libraryIds.add(id);
-    }
-
-    public void removeLibraryId(Long id){
-        libraryIds.remove(id);
-    }
 }

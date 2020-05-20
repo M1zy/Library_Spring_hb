@@ -101,50 +101,51 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addRent", method = RequestMethod.PUT)
-    public ResponseEntity addRent(@Valid @RequestBody RentDto rentDto) {
+    public ResponseEntity<?> addRent(@Valid @RequestBody RentDto rentDto) {
         BookRent rent = mapper.convertToEntity(rentDto);
         if(!isLibraryContainingBooks(rent.getLibrary(),rent.getBooks())){
             return new ResponseEntity("Library doesn't contain this books", HttpStatus.OK);
         }
         BookRent bookRent;
-        if(bookRentService.bookRent(rent.getLibrary(),rent.getUser())!=null){
-            bookRent=bookRentService.bookRent(rent.getLibrary(),rent.getUser());
+        if(bookRentService.bookRent(rent.getLibrary(),rent.getUser()) != null){
+            bookRent = bookRentService.bookRent(rent.getLibrary(),rent.getUser());
         }
         else {
             bookRent = new BookRent(new HashSet<>(),rent.getLibrary(),rent.getUser());
         }
         Set<Book> books = rent.getBooks();
-        Library library = rent.getLibrary();
-        User user = rent.getUser();
+        Library library = bookRent.getLibrary();
+        User user = bookRent.getUser();
         for (Book book:
              books) {
+            if(library.takeBook(book)){
             bookRent.addBook(book);
-            library.removeBook(book);
-            book.removeLibrary(library);
+            }
         }
-            user.addBookRent(bookRent);
-            userService.save(user);
-            libraryService.save(library);
-        return new ResponseEntity("Book was rented", HttpStatus.OK);
+        bookRent.setLibrary(library);
+        user.addBookRent(bookRent);
+        userService.save(user);
+        libraryService.save(library);
+        return new ResponseEntity<>("Book was rented", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/returnRent", method = RequestMethod.PUT)
-    public ResponseEntity returnRent(@Valid @RequestBody RentDto rentDto) throws ParseException {
+    public ResponseEntity<?> returnRent(@Valid @RequestBody RentDto rentDto) {
         try {
             BookRent bookRent = mapper.convertToEntity(rentDto);
             User user = bookRent.getUser();
             Set<Book> books = bookRent.getBooks();
             Library library = libraryService.get(rentDto.getLibraryId());
-            BookRent newBookRent=bookRentService.bookRent(library,user);
+            BookRent newBookRent = bookRentService.bookRent(library,user);
             newBookRent.removeBooks(books);
-            library.addBooks(books);
+            library.returnBooks(books);
             bookRentService.save(newBookRent);
             libraryService.save(library);
-            return new ResponseEntity("Book was returned to the library", HttpStatus.OK);
+            return new ResponseEntity<>("Book was returned to the library", HttpStatus.OK);
         }
         catch (Exception e){
             log.error(e.getMessage());
-            return new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
 

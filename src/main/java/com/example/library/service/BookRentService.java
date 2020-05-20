@@ -20,8 +20,8 @@ public class BookRentService {
         return bookRentRepository.findByBooksContainsAndLibraryAndUser(book,library,user);
     }
 
-    public BookRent bookRent(Library library,User user){
-        return bookRentRepository.findByLibraryAndUser(library,user);
+    public BookRent bookRent(Library library, User user){
+        return bookRentRepository.findByLibraryAndUser(library, user);
     }
 
     public void save(BookRent bookRent){

@@ -36,10 +36,6 @@ public class LibraryService {
         return libraryRepository.findLibrariesByNameContains(name);
     }
 
-    public List<Library> listByBook(Book book){
-        return libraryRepository.findLibrariesByBooksContains(book);
-    }
-
     public boolean exist(Long id){
         return libraryRepository.existsById(id);
     }

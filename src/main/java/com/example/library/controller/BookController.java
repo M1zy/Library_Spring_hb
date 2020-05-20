@@ -1,8 +1,9 @@
 package com.example.library.controller;
 
 import com.example.library.domain.Book;
-import com.example.library.domain.Library;
+import com.example.library.domain.BookRegistration;
 import com.example.library.dto.BookDto;
+import com.example.library.dto.RegistrationDto;
 import com.example.library.exception.RecordNotFoundException;
 import com.example.library.ftp.FtpService;
 import com.example.library.mapper.Mapper;
@@ -23,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,9 +35,6 @@ import java.util.stream.Collectors;
 public class BookController {
     @Autowired
     private BookService bookService;
-
-    @Autowired
-    private LibraryService libraryService;
 
     @Autowired
     private Mapper mapper = new Mapper();
@@ -85,7 +82,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public ResponseEntity<BookDto> updateBook(@Valid @RequestBody BookDto bookDto) throws ParseException {
+    public ResponseEntity<BookDto> updateBook(@Valid @RequestBody BookDto bookDto) {
         if(!bookService.exist(bookDto.getId())){
             throw new RecordNotFoundException("Invalid book id : " + bookDto.getId());
         }
@@ -94,17 +91,17 @@ public class BookController {
             return new ResponseEntity<>(bookDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/addLibrary/{idBook}_to_{idLibrary}", method = RequestMethod.PUT)
-    public ResponseEntity addingLibrary(@PathVariable Long idBook,@PathVariable Long idLibrary) throws ParseException {
+    @RequestMapping(value = "/addRegistration", method = RequestMethod.PUT)
+    public ResponseEntity<?> addingLibrary(@Valid @RequestBody RegistrationDto registrationDto) {
             try {
-                Book book = bookService.get(idBook);
-                Library library = libraryService.get(idLibrary);
-                book.addLibrary(library);
+                BookRegistration bookRegistration = mapper.convertToEntity(registrationDto);
+                Book book = bookService.get(bookRegistration.getBook().getId());
+                book.addRegistration(bookRegistration);
                 bookService.save(book);
-                return new ResponseEntity("Book added to library successfully", HttpStatus.OK);
+                return new ResponseEntity<>("Book added to library successfully", HttpStatus.OK);
             }
             catch (Exception e){
-                throw new RecordNotFoundException("Invalid book or library ids : " + idBook + " ," + idLibrary);
+                throw new RecordNotFoundException("Invalid book or library ids;");
             }
     }
 

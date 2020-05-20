@@ -89,7 +89,7 @@ public class LibraryController {
         if(!libraryService.exist(id)){
             throw new RecordNotFoundException("Invalid library id : " + id);
         }
-        return libraryService.get(id).getBooks().size();
+        return libraryService.get(id).getBookRegistrations().size();
     }
 
     @RequestMapping(value = "/toFile/{id}", method = RequestMethod.GET)
