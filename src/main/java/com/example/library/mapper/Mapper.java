@@ -23,6 +23,9 @@ public class Mapper {
     private UserService userService;
 
     @Autowired
+    private BookRentService bookRentService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
@@ -116,5 +119,31 @@ public class Mapper {
             log.error(e.getMessage());
         }
         return author;
+    }
+
+    public OrderDto convertToDto(Orders orders){
+        OrderDto orderDto = modelMapper.map(orders,OrderDto.class);
+        orderDto.setBookRentIds(orders.getBookRentSet().stream().map(x->x.getId()).collect(Collectors.toSet()));
+        orderDto.setUserId(orders.getUser().getId());
+        return orderDto;
+    }
+
+    public Orders convertToEntity(OrderDto orderDto){
+        Orders orders = modelMapper.map(orderDto, Orders.class);
+        try{
+            for (Long id:
+                 orderDto.getBookRentIds()) {
+                if(bookRentService.get(id).getUser() != userService.get(orderDto.getUserId())){
+                    throw new Exception("Book rents don't belong to User");
+                }
+            }
+            orders.setBookRentSet(orderDto.getBookRentIds().stream().map(x->bookRentService.get(x)).collect(Collectors.toSet()));
+            orders.setUser(userService.get(orderDto.getUserId()));
+            orders.setTotalPrice();
+        }
+        catch (Exception ex){
+            throw new RecordNotFoundException("No such ids were found");
+        }
+        return orders;
     }
 }

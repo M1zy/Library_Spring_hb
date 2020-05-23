@@ -14,6 +14,8 @@ public class BookDto {
     @NotEmpty(message = "name must not be empty")
     private String name;
 
+    private Double price;
+
     private Set<Long> authorIds = new HashSet<>();
 
     private Integer year;

@@ -18,6 +18,9 @@ public class User extends Essence {
     @JoinColumn(name = "user_id")
     private Set<BookRent> bookRentSet =new HashSet<BookRent>();
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Orders> orders = new HashSet<Orders>();
+
     public User(String name, String login, String password, String email){
         super(name);
         this.login=login;
@@ -31,6 +34,11 @@ public class User extends Essence {
 
     public void removeBookRent(BookRent bookRent){
         this.bookRentSet.remove(bookRent);
+    }
+
+    public void addOrder(Orders orders){
+        orders.setUser(this);
+        this.orders.add(orders);
     }
 
     public void toConsole(){

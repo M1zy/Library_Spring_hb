@@ -3,6 +3,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +22,10 @@ public class Book extends Essence {
     private Integer year;
     private String description;
     private String path;
+
+    @Min(value = 0)
+    @NotNull
+    private Double price;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "book_id")
@@ -43,7 +49,7 @@ public class Book extends Essence {
 
     public boolean takeBook(Library library){
         for(BookRegistration bookRegistration :
-        bookRegistrations){
+                bookRegistrations){
             if(bookRegistration.getLibrary() == library){
                 if(bookRegistration.getCount()>=1){
                     bookRegistrations.remove(bookRegistration);

@@ -2,7 +2,10 @@ package com.example.library.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,10 +28,25 @@ public class BookRent {
     @OneToMany
     private Set<Book> books = new HashSet<>();
 
+    @ManyToOne
+    private Orders order;
+
+    @Min(value = 0)
+    @NotNull
+    private Double totalPrice;
+
     public BookRent(Set<Book> books,Library library,User user){
         this.books=books;
         this.user=user;
         this.library=library;
+    }
+
+    public void setTotalPrice(){
+        totalPrice = 0d;
+        for (Book book:
+             books) {
+            totalPrice += book.getPrice();
+        }
     }
 
     public void addBook(Book book){

@@ -1,16 +1,11 @@
 package com.example.library.controller;
-import com.example.library.domain.Book;
-import com.example.library.domain.BookRent;
-import com.example.library.domain.Library;
-import com.example.library.domain.User;
+import com.example.library.domain.*;
+import com.example.library.dto.OrderDto;
 import com.example.library.dto.RentDto;
 import com.example.library.dto.UserDto;
 import com.example.library.exception.RecordNotFoundException;
 import com.example.library.mapper.Mapper;
-import com.example.library.service.BookRentService;
-import com.example.library.service.BookService;
-import com.example.library.service.LibraryService;
-import com.example.library.service.UserService;
+import com.example.library.service.*;
 import com.example.library.util.UserGenerator;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +44,9 @@ public class UserController {
 
     @Autowired
     private BookRentService bookRentService;
+
+    @Autowired
+    private OrdersService ordersService;
 
     @Autowired
     private Mapper mapper = new Mapper();
@@ -104,7 +102,7 @@ public class UserController {
     public ResponseEntity<?> addRent(@Valid @RequestBody RentDto rentDto) {
         BookRent rent = mapper.convertToEntity(rentDto);
         if(!isLibraryContainingBooks(rent.getLibrary(),rent.getBooks())){
-            return new ResponseEntity("Library doesn't contain this books", HttpStatus.OK);
+            return new ResponseEntity<>("Library doesn't contain this books", HttpStatus.OK);
         }
         BookRent bookRent;
         if(bookRentService.bookRent(rent.getLibrary(),rent.getUser()) != null){
@@ -123,6 +121,7 @@ public class UserController {
             }
         }
         bookRent.setLibrary(library);
+        bookRent.setTotalPrice();
         user.addBookRent(bookRent);
         userService.save(user);
         libraryService.save(library);
@@ -165,5 +164,45 @@ public class UserController {
                     .headers(headers)
                     .contentType(MediaType.APPLICATION_OCTET_STREAM)
                     .body(new InputStreamResource(in));
+    }
+
+    @RequestMapping(value = "/addOrder", method = RequestMethod.PUT)
+    public ResponseEntity<?> addOrder(@Valid @RequestBody OrderDto orderDto) {
+        try {
+            Orders orders = mapper.convertToEntity(orderDto);
+            User user = orders.getUser();
+            System.out.println(orders.getId()+" "+ orders.getUser().getId()+" "+ orders.getTotalPrice()+" "+ orders.getStatus()+" "+ orders.getDeliveryAddress()+" "+ orders.getBookRentSet().size());
+            try {
+                user.addOrder(orders);
+            }
+            catch (Exception ex){
+                throw ex;
+            }
+            userService.save(user);
+            return new ResponseEntity<>("Order was successfully added", HttpStatus.OK);
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
+    }
+
+    @RequestMapping(value = "/listOrders", method= RequestMethod.GET)
+    public List<OrderDto> listOrders() {
+        List<Orders> orders = ordersService.listAll();
+        return orders.stream().map(mapper::convertToDto).collect(Collectors.toList());
+    }
+
+    @RequestMapping(value = "/changeStatusOrder/{id}_{status}", method = RequestMethod.PUT)
+    public ResponseEntity<?> setOrderStatus(@PathVariable Long id, @PathVariable Status status) {
+        try {
+            Orders order = ordersService.get(id);
+            order.setStatus(status);
+            ordersService.save(order);
+        }
+        catch (RecordNotFoundException ex){
+            throw new RecordNotFoundException("No such order number");
+        }
+        return new ResponseEntity<>("Order status was successfully changed", HttpStatus.OK);
     }
 }

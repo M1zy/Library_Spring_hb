@@ -24,6 +24,10 @@ public class BookRentService {
         return bookRentRepository.findByLibraryAndUser(library, user);
     }
 
+    public BookRent get(Long id){
+        return bookRentRepository.findById(id).get();
+    }
+
     public void save(BookRent bookRent){
         bookRentRepository.save(bookRent);
     }

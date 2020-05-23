@@ -46,16 +46,16 @@ public class Library extends Essence{
         for(BookRegistration bookRegistration :
                 bookRegistrations){
             if(bookRegistration.getBook() == book){
-                    bookRegistrations.remove(bookRegistration);
-                    bookRegistrations.add(new BookRegistration(bookRegistration.getLibrary(),
-                            bookRegistration.getBook(),bookRegistration.getCount()+1));
+                bookRegistrations.remove(bookRegistration);
+                bookRegistrations.add(new BookRegistration(bookRegistration.getLibrary(),
+                        bookRegistration.getBook(),bookRegistration.getCount()+1));
             }
         }
     }
 
     public void returnBooks(Set<Book> books){
         for (Book book:
-             books) {
+                books) {
             returnBook(book);
         }
     }
@@ -67,7 +67,7 @@ public class Library extends Essence{
     public Set<Book> getBooks(){
         Set<Book> books = new HashSet<>();
         for (BookRegistration bookRegistration:
-             bookRegistrations) {
+                bookRegistrations) {
             books.add(bookRegistration.getBook());
         }
         return books;
