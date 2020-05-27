@@ -17,10 +17,6 @@ public class Library extends Essence{
     @JoinColumn(name = "library_id")
     private Set<BookRegistration> bookRegistrations = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "library_id")
-    private Set<BookRent> bookRentSet = new HashSet<BookRent>();
-
     public Library(String name,String address,Set<BookRegistration> registrations) {
         super(name);
         this.address=address;
@@ -33,7 +29,7 @@ public class Library extends Essence{
             if(bookRegistration.getBook() == book){
                 if(bookRegistration.getCount()>=1){
                     bookRegistrations.remove(bookRegistration);
-                    bookRegistrations.add(new BookRegistration(bookRegistration.getLibrary(),
+                    bookRegistrations.add(new BookRegistration(bookRegistration.getId(), bookRegistration.getLibrary(),
                             bookRegistration.getBook(),bookRegistration.getCount()-1));
                     return true;
                 }
@@ -47,10 +43,19 @@ public class Library extends Essence{
                 bookRegistrations){
             if(bookRegistration.getBook() == book){
                 bookRegistrations.remove(bookRegistration);
-                bookRegistrations.add(new BookRegistration(bookRegistration.getLibrary(),
+                bookRegistrations.add(new BookRegistration(bookRegistration.getId(), bookRegistration.getLibrary(),
                         bookRegistration.getBook(),bookRegistration.getCount()+1));
             }
         }
+    }
+
+    public Set<Cart> getCartSet(){
+        Set<Cart> cartSet = new HashSet<>();
+        for (BookRegistration registration:
+             bookRegistrations) {
+            cartSet.add(registration.getCart());
+        }
+        return cartSet;
     }
 
     public void returnBooks(Set<Book> books){

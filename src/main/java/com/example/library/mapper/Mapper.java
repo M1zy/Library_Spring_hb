@@ -23,7 +23,10 @@ public class Mapper {
     private UserService userService;
 
     @Autowired
-    private BookRentService bookRentService;
+    private CartService cartService;
+
+    @Autowired
+    private RegistrationService registrationService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -67,19 +70,25 @@ public class Mapper {
         User user = modelMapper.map(userDto,User.class);
             if(userService.exist(user.getId())){
             User oldUser=userService.get(user.getId());
-            user.setBookRentSet(oldUser.getBookRentSet());
+            user.setCartSet(oldUser.getCartSet());
             }
         return user;
     }
 
-    public BookRent convertToEntity(RentDto bookRentDto){
-        BookRent bookRent = modelMapper.map(bookRentDto,BookRent.class);
-        if (bookRent.getId() != null&&bookRentDto.getBookIds()!=null) {
-            bookRent.setBooks(bookRentDto.getBookIds().stream().map(x->bookService.get(x)).collect(Collectors.toSet()));
-            bookRent.setLibrary(libraryService.get(bookRentDto.getLibraryId()));
-            bookRent.setUser(userService.get(bookRentDto.getUserId()));
+    public Cart convertToEntity(CartDto cartDto){
+        Cart cart = modelMapper.map(cartDto, Cart.class);
+        if (cart.getId() != null && cartDto.getRegistrationsIds() != null) {
+            cart.setRegistrations(cartDto.getRegistrationsIds().stream().map(x->registrationService.get(x)).collect(Collectors.toSet()));
+            cart.setUser(userService.get(cartDto.getUserId()));
         }
-        return bookRent;
+        return cart;
+    }
+
+    public CartDto convertToDto(Cart cart){
+        CartDto cartDto = modelMapper.map(cart, CartDto.class);
+            cartDto.setRegistrationsIds(cart.getRegistrations().stream().map(x->x.getId()).collect(Collectors.toSet()));
+            cartDto.setUserId(cart.getUser().getId());
+        return cartDto;
     }
 
     public BookRegistration convertToEntity(RegistrationDto registrationDto){
@@ -119,31 +128,5 @@ public class Mapper {
             log.error(e.getMessage());
         }
         return author;
-    }
-
-    public OrderDto convertToDto(Orders orders){
-        OrderDto orderDto = modelMapper.map(orders,OrderDto.class);
-        orderDto.setBookRentIds(orders.getBookRentSet().stream().map(x->x.getId()).collect(Collectors.toSet()));
-        orderDto.setUserId(orders.getUser().getId());
-        return orderDto;
-    }
-
-    public Orders convertToEntity(OrderDto orderDto){
-        Orders orders = modelMapper.map(orderDto, Orders.class);
-        try{
-            for (Long id:
-                 orderDto.getBookRentIds()) {
-                if(bookRentService.get(id).getUser() != userService.get(orderDto.getUserId())){
-                    throw new Exception("Book rents don't belong to User");
-                }
-            }
-            orders.setBookRentSet(orderDto.getBookRentIds().stream().map(x->bookRentService.get(x)).collect(Collectors.toSet()));
-            orders.setUser(userService.get(orderDto.getUserId()));
-            orders.setTotalPrice();
-        }
-        catch (Exception ex){
-            throw new RecordNotFoundException("No such ids were found");
-        }
-        return orders;
     }
 }

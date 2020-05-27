@@ -20,7 +20,7 @@ public class UserGenerator extends ExcelGenerator<User> {
             Row row = sheet.createRow(rowIdx++);
             fillRow(user,row);
             sheet.createRow(rowIdx++);
-            rentsToExcel(workbook,sheet,user.getBookRentSet(),rowIdx);
+            rentsToExcel(workbook,sheet,user.getCartSet(),rowIdx);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             workbook.write(outputStream);
             outputStream.close();

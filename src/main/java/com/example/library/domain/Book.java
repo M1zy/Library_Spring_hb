@@ -31,9 +31,6 @@ public class Book extends Essence {
     @JoinColumn(name = "book_id")
     private Set<BookRegistration> bookRegistrations = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private BookRent bookRentSet;
-
     public Book(String name,Set<Author> authors, Integer year,
                 String description,Set<BookRegistration> bookRegistrations) {
         super(name);

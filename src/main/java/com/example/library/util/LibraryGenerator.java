@@ -19,7 +19,7 @@ public class LibraryGenerator extends ExcelGenerator<Library> {
             Row row = sheet.createRow(rowIdx++);
             fillRow(library,row);
             rowIdx = booksToExcel(workbook, sheet, library.getBooks(), rowIdx);
-            rentsToExcel(workbook, sheet, library.getBookRentSet(), rowIdx);
+            rentsToExcel(workbook, sheet, library.getCartSet(), rowIdx);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             workbook.write(outputStream);
             outputStream.close();
@@ -40,7 +40,7 @@ public class LibraryGenerator extends ExcelGenerator<Library> {
                     Row row = sheet.createRow(rowIdx++);
                     fillRow(library,row);
                     rowIdx = booksToExcel(workbook, sheet, library.getBooks(), rowIdx);
-                    rowIdx=rentsToExcel(workbook, sheet, library.getBookRentSet(), rowIdx);
+                    rowIdx = rentsToExcel(workbook, sheet, library.getCartSet(), rowIdx);
                     sheet.createRow(rowIdx++);
                 }
                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

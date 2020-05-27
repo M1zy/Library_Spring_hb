@@ -15,13 +15,13 @@ public abstract class ExcelGenerator<T extends Essence>{
 
      public abstract Report report(T essence) throws IOException;
 
-    protected static final List<String> bookHeader= Arrays.asList("BookID", "Name", "Author", "Year", "Description");
+    protected static final List<String> bookHeader = Arrays.asList("BookID", "Name", "Author", "Year", "Description");
 
-    protected static final List<String> libraryHeader= Arrays.asList("LibraryID", "Name", "Address");
+    protected static final List<String> libraryHeader = Arrays.asList("LibraryID", "Name", "Address");
 
-    protected static final List<String> rentHeader= Arrays.asList("UserID", "Name", "Login", "Email","LibraryID","BookIDS");
+    protected static final List<String> rentHeader = Arrays.asList("UserID", "Name", "Login", "Email","DeliveryAddress","RegistrationIds");
 
-    protected static final List<String> userHeader= Arrays.asList("UserID", "Name", "Login", "Email");
+    protected static final List<String> userHeader = Arrays.asList("UserID", "Name", "Login", "Email");
 
     protected static void fillRow(Book book,Row row){
         row.createCell(0).setCellValue(book.getId());
@@ -37,13 +37,13 @@ public abstract class ExcelGenerator<T extends Essence>{
         row.createCell(2).setCellValue(library.getAddress());
     }
 
-    protected static void fillRow(BookRent bookRent,Row row){
-        row.createCell(0).setCellValue(bookRent.getUser().getId());
-        row.createCell(1).setCellValue(bookRent.getUser().getName());
-        row.createCell(2).setCellValue(bookRent.getUser().getLogin());
-        row.createCell(3).setCellValue(bookRent.getUser().getEmail());
-        row.createCell(4).setCellValue(bookRent.getLibrary().getId());
-        row.createCell(5).setCellValue(bookRent.getBooks().stream().
+    protected static void fillRow(Cart cart, Row row){
+        row.createCell(0).setCellValue(cart.getUser().getId());
+        row.createCell(1).setCellValue(cart.getUser().getName());
+        row.createCell(2).setCellValue(cart.getUser().getLogin());
+        row.createCell(3).setCellValue(cart.getUser().getEmail());
+        row.createCell(4).setCellValue(cart.getDeliveryAddress());
+        row.createCell(5).setCellValue(cart.getRegistrations().stream().
                 map(x -> x.getId()).collect(Collectors.toSet()).toString());
     }
 
@@ -92,11 +92,11 @@ public abstract class ExcelGenerator<T extends Essence>{
         return step;
     }
 
-    static Integer rentsToExcel(Workbook workbook, Sheet sheet, Set<BookRent> bookRentSet, Integer step){
+    static Integer rentsToExcel(Workbook workbook, Sheet sheet, Set<Cart> cartSet, Integer step){
         step=headerToExcel(workbook,rentHeader,sheet,step);
-        for (BookRent bookRent : bookRentSet) {
+        for (Cart cart : cartSet) {
             Row row = sheet.createRow(step++);
-            fillRow(bookRent,row);
+            fillRow(cart,row);
         }
         sheet.createRow(step++);
         return step;

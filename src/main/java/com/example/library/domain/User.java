@@ -16,10 +16,7 @@ public class User extends Essence {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
-    private Set<BookRent> bookRentSet =new HashSet<BookRent>();
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Orders> orders = new HashSet<Orders>();
+    private Set<Cart> cartSet =new HashSet<Cart>();
 
     public User(String name, String login, String password, String email){
         super(name);
@@ -28,17 +25,12 @@ public class User extends Essence {
         this.password=password;
     }
 
-    public void addBookRent(BookRent bookRent){
-        this.bookRentSet.add(bookRent);
+    public void addBookRent(Cart cart){
+        this.cartSet.add(cart);
     }
 
-    public void removeBookRent(BookRent bookRent){
-        this.bookRentSet.remove(bookRent);
-    }
-
-    public void addOrder(Orders orders){
-        orders.setUser(this);
-        this.orders.add(orders);
+    public void removeBookRent(Cart cart){
+        this.cartSet.remove(cart);
     }
 
     public void toConsole(){

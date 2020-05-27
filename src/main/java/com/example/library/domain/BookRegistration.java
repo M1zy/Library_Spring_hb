@@ -26,7 +26,16 @@ public class BookRegistration {
     @Column(columnDefinition = "integer default 0")
     private Integer count;
 
+    @ManyToOne
+    private Cart cart;
+
     public BookRegistration(Library library, Book book, Integer count){
+        this.library = library;
+        this.book = book;
+        this.count = count;
+    }
+    public BookRegistration(Long id, Library library, Book book, Integer count){
+        this.id = id;
         this.library = library;
         this.book = book;
         this.count = count;
