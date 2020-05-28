@@ -28,9 +28,7 @@ public class Library extends Essence{
                 bookRegistrations){
             if(bookRegistration.getBook() == book){
                 if(bookRegistration.getCount()>=1){
-                    bookRegistrations.remove(bookRegistration);
-                    bookRegistrations.add(new BookRegistration(bookRegistration.getId(), bookRegistration.getLibrary(),
-                            bookRegistration.getBook(),bookRegistration.getCount()-1));
+                    bookRegistration.setCount(bookRegistration.getCount()-1);
                     return true;
                 }
             }
@@ -42,9 +40,7 @@ public class Library extends Essence{
         for(BookRegistration bookRegistration :
                 bookRegistrations){
             if(bookRegistration.getBook() == book){
-                bookRegistrations.remove(bookRegistration);
-                bookRegistrations.add(new BookRegistration(bookRegistration.getId(), bookRegistration.getLibrary(),
-                        bookRegistration.getBook(),bookRegistration.getCount()+1));
+                bookRegistration.setCount(bookRegistration.getCount()+1);
             }
         }
     }
