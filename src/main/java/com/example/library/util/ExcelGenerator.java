@@ -43,7 +43,7 @@ public abstract class ExcelGenerator<T extends Essence>{
         row.createCell(2).setCellValue(cart.getUser().getLogin());
         row.createCell(3).setCellValue(cart.getUser().getEmail());
         row.createCell(4).setCellValue(cart.getDeliveryAddress());
-        row.createCell(5).setCellValue(cart.getRegistrations().stream().
+        row.createCell(5).setCellValue(cart.getCartRegistrations().stream().
                 map(x -> x.getId()).collect(Collectors.toSet()).toString());
     }
 

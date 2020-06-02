@@ -2,12 +2,10 @@ package com.example.library.controller;
 
 import com.example.library.domain.*;
 import com.example.library.dto.CartDto;
+import com.example.library.dto.CartRegistrationDto;
 import com.example.library.exception.RecordNotFoundException;
 import com.example.library.mapper.Mapper;
-import com.example.library.service.CartService;
-import com.example.library.service.LibraryService;
-
-import com.example.library.service.UserService;
+import com.example.library.service.*;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -36,43 +34,42 @@ public class CartController {
     private LibraryService libraryService;
 
     @Autowired
+    private CartRegistrationService cartRegistrationService;
+
+    @Autowired
+    private RegistrationService registrationService;
+
+    @Autowired
     private Mapper mapper = new Mapper();
 
     @RequestMapping(value = "/addCart/{type}", method = RequestMethod.PUT)
-    public ResponseEntity<?> addRent(@Valid @RequestBody CartDto cartDto,  @PathVariable TypeOperation type) {
+    public ResponseEntity<?> addCart(@Valid @RequestBody CartDto cartDto,  @PathVariable TypeOperation type) {
         Cart cart = mapper.convertToEntity(cartDto);
-        for (BookRegistration b:
-             cart.getRegistrations()) {
-            System.out.println(b.getId());
-        }
-        cart.setTypeOperation(type.toString());
-        cart.setTotalPrice();
+        cart.setTypeOperation(type);
+        cart.calculateTotalPrice();
         User user = cart.getUser();
-        for (BookRegistration registration:
-                cart.getRegistrations()) {
-            Library library = registration.getLibrary();
-            library.takeBook(registration.getBook());
-            libraryService.save(registration.getLibrary());
-        }
-        user.addBookRent(cart);
+        user.addCart(cart);
         userService.save(user);
-        return new ResponseEntity<>("Books were rented", HttpStatus.OK);
+        return new ResponseEntity<>("Cart was created", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/returnCart", method = RequestMethod.PUT)
-    public ResponseEntity<?> returnRent(@Valid @RequestBody CartDto cartDto) {
+    public ResponseEntity<?> returnCart(@Valid @RequestBody CartDto cartDto) {
         try {
             Cart oldCart = mapper.convertToEntity(cartDto);
             Cart cart = cartService.get(oldCart.getId());
-            Set<BookRegistration> registrations = oldCart.getRegistrations();
-            for (BookRegistration registration:
-                 registrations) {
+            Set<CartRegistration> cartRegistrations = oldCart.getCartRegistrations();
+            for (CartRegistration cartRegistration:
+                 cartRegistrations) {
+                BookRegistration registration = cartRegistration.getBookRegistration();
                 Library library = registration.getLibrary();
-                library.returnBook(registration.getBook());
-                cart.removeRegistration(registration);
+                for (int i=0; i<cartRegistration.getCount(); i++){
+                    library.returnBook(registration.getBook());
+                }
+                cart.removeCartRegistration(cartRegistration);
                 libraryService.save(library);
             }
-            cart.setTotalPrice();
+            cart.calculateTotalPrice();
             if(cart.getTotalPrice()==0) {
                 cart.setStatus(Status.CANCELLED);
             }
@@ -86,7 +83,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/listCarts", method = RequestMethod.GET)
-    public List<CartDto> listOrders() {
+    public List<CartDto> listCarts() {
         List<Cart> carts = cartService.listAll();
         return carts.stream().map(mapper::convertToDto).collect(Collectors.toList());
     }
@@ -102,5 +99,42 @@ public class CartController {
             throw new RecordNotFoundException("No such cart number");
         }
         return new ResponseEntity<>("Cart status was successfully changed", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/changeDiscountRateCart/{id}_{discount}", method = RequestMethod.PUT)
+    public ResponseEntity<?> setDiscountRateStatus(@PathVariable Long id, @PathVariable Double discount) {
+        try {
+            Cart cart = cartService.get(id);
+            cart.setDiscountRate(discount);
+            cart.calculateTotalPrice();
+            cartService.save(cart);
+        }
+        catch (RecordNotFoundException ex){
+            throw new RecordNotFoundException("No such cart number");
+        }
+        return new ResponseEntity<>("Cart status was successfully changed", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/addCartRegistration", method = RequestMethod.PUT)
+    public ResponseEntity<?> addCartRegistration(@Valid @RequestBody CartRegistrationDto cartRegistrationDto) {
+        CartRegistration cartRegistration = mapper.convertToEntity(cartRegistrationDto);
+        cartRegistration.calculateTotalPrice();
+        if(cartRegistration.getCount()>cartRegistration.getBookRegistration().getCount()){
+            throw new RecordNotFoundException("invalid count of books");
+        }
+        BookRegistration registration = cartRegistration.getBookRegistration();
+        Cart cart = cartRegistration.getCart();
+        cart.addCartRegistration(cartRegistration);
+        cart.calculateTotalPrice();
+        cartService.save(cart);
+        cartRegistration = cart.getCartRegistrations().stream().reduce((prev, next) -> next).orElse(null);
+        registration.addCartRegistration(cartRegistration);
+        registrationService.save(registration);
+        Library library = registration.getLibrary();
+        for (int i=0; i<cartRegistration.getCount(); i++){
+            library.takeBook(registration.getBook());
+        }
+        libraryService.save(registration.getLibrary());
+        return new ResponseEntity<>("Books are in hold", HttpStatus.OK);
     }
 }

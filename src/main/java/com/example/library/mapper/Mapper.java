@@ -29,6 +29,9 @@ public class Mapper {
     private RegistrationService registrationService;
 
     @Autowired
+    private CartRegistrationService cartRegistrationService;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
@@ -77,16 +80,18 @@ public class Mapper {
 
     public Cart convertToEntity(CartDto cartDto){
         Cart cart = modelMapper.map(cartDto, Cart.class);
-        if (cart.getId() != null && cartDto.getRegistrationsIds() != null) {
-            cart.setRegistrations(cartDto.getRegistrationsIds().stream().map(x->registrationService.get(x)).collect(Collectors.toSet()));
+        if (cart.getId() != null) {
             cart.setUser(userService.get(cartDto.getUserId()));
+        }
+        if (cartDto.getRegistrationsIds() != null){
+            cart.setCartRegistrations(cartDto.getRegistrationsIds().stream().map(x->cartRegistrationService.get(x)).collect(Collectors.toSet()));
         }
         return cart;
     }
 
     public CartDto convertToDto(Cart cart){
         CartDto cartDto = modelMapper.map(cart, CartDto.class);
-            cartDto.setRegistrationsIds(cart.getRegistrations().stream().map(x->x.getId()).collect(Collectors.toSet()));
+            cartDto.setRegistrationsIds(cart.getCartRegistrations().stream().map(x->x.getId()).collect(Collectors.toSet()));
             cartDto.setUserId(cart.getUser().getId());
         return cartDto;
     }
@@ -128,5 +133,24 @@ public class Mapper {
             log.error(e.getMessage());
         }
         return author;
+    }
+
+    public CartRegistrationDto convertToDto(CartRegistration cartRegistration){
+        CartRegistrationDto cartRegistrationDto = modelMapper.map(cartRegistration, CartRegistrationDto.class);
+        cartRegistrationDto.setCart_id(cartRegistration.getCart().getId());
+        cartRegistrationDto.setRegistration_id(cartRegistration.getBookRegistration().getId());
+        return cartRegistrationDto;
+    }
+
+    public CartRegistration convertToEntity(CartRegistrationDto cartRegistrationDto) {
+        CartRegistration cartRegistration = modelMapper.map(cartRegistrationDto, CartRegistration.class);
+        try {
+            cartRegistration.setBookRegistration(registrationService.get(cartRegistrationDto.getRegistration_id()));
+            cartRegistration.setCart(cartService.get(cartRegistrationDto.getCart_id()));
+        }
+        catch (Exception e){
+            log.error(e.getMessage());
+        }
+        return cartRegistration;
     }
 }

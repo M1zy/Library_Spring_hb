@@ -2,8 +2,8 @@ package com.example.library.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
@@ -18,11 +18,12 @@ public class Cart {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany
-    private Set<BookRegistration> registrations = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "cart_id")
+    private Set<CartRegistration> cartRegistrations = new HashSet<>();
 
     @Min(value = 0)
     @NotNull
@@ -32,34 +33,38 @@ public class Cart {
     private String deliveryAddress;
 
     @NotNull
-    private String typeOperation = TypeOperation.BUY.toString();
+    private TypeOperation typeOperation = TypeOperation.BUY;
 
     @NotNull
-    private String status = Status.PROCESSING.toString();
+    private Status status = Status.PROCESSING;
+
+    @Min(value = 0)
+    @Max(value = 1)
+    @NotNull
+    private Double discountRate = 0d;
 
     public void setStatus(Status status){
-        this.status = status.toString();
+        this.status = status;
     }
 
-    public Cart(Set<BookRegistration> registrations, User user){
-        this.registrations = registrations;
+    public Cart(Set<CartRegistration> registrations, User user){
+        this.cartRegistrations = registrations;
         this.user = user;
     }
 
-    public void setTotalPrice(){
+    public void calculateTotalPrice(){
         totalPrice = 0d;
-        for (BookRegistration registration:
-             registrations) {
-            totalPrice += registration.getBook().getPrice();
+        for (CartRegistration registration:
+             cartRegistrations) {
+            totalPrice += registration.getTotalPrice();
         }
-        if(typeOperation==TypeOperation.RENT.toString()){
-            totalPrice*=0.7;
-        }
+            totalPrice*=(1-discountRate);
     }
 
-    public void addRegistration(BookRegistration registration){
-        this.registrations.add(registration);
+    public void addCartRegistration(CartRegistration registration){
+        registration.setCart(this);
+        this.cartRegistrations.add(registration);
     }
 
-    public void removeRegistration(BookRegistration registration){this.registrations.remove(registration);}
+    public void removeCartRegistration(CartRegistration registration){this.cartRegistrations.remove(registration);}
 }

@@ -25,11 +25,11 @@ public class User extends Essence {
         this.password=password;
     }
 
-    public void addBookRent(Cart cart){
+    public void addCart(Cart cart){
         this.cartSet.add(cart);
     }
 
-    public void removeBookRent(Cart cart){
+    public void removeCart(Cart cart){
         this.cartSet.remove(cart);
     }
 

@@ -19,8 +19,8 @@ public class Library extends Essence{
 
     public Library(String name,String address,Set<BookRegistration> registrations) {
         super(name);
-        this.address=address;
-        this.bookRegistrations=registrations;
+        this.address = address;
+        this.bookRegistrations = registrations;
     }
 
     public boolean takeBook(Book book){
@@ -49,7 +49,10 @@ public class Library extends Essence{
         Set<Cart> cartSet = new HashSet<>();
         for (BookRegistration registration:
              bookRegistrations) {
-            cartSet.add(registration.getCart());
+            for (CartRegistration cartReg:
+                 registration.getCartRegistrations()) {
+                cartSet.add(cartReg.getCart());
+            }
         }
         return cartSet;
     }

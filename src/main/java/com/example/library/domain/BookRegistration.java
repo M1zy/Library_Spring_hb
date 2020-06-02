@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="book_registration")
@@ -26,8 +28,9 @@ public class BookRegistration {
     @Column(columnDefinition = "integer default 0")
     private Integer count;
 
-    @ManyToOne
-    private Cart cart;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "registration_id")
+    private Set<CartRegistration> cartRegistrations = new HashSet<>();
 
     public BookRegistration(Library library, Book book, Integer count){
         this.library = library;
@@ -39,5 +42,10 @@ public class BookRegistration {
         this.library = library;
         this.book = book;
         this.count = count;
+    }
+
+    public void addCartRegistration(CartRegistration cartRegistration){
+        cartRegistration.setBookRegistration(this);
+        this.cartRegistrations.add(cartRegistration);
     }
 }
