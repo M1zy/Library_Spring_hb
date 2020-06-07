@@ -117,24 +117,30 @@ public class CartController {
 
     @RequestMapping(value = "/addCartRegistration", method = RequestMethod.PUT)
     public ResponseEntity<?> addCartRegistration(@Valid @RequestBody CartRegistrationDto cartRegistrationDto) {
-        CartRegistration cartRegistration = mapper.convertToEntity(cartRegistrationDto);
-        cartRegistration.calculateTotalPrice();
-        if(cartRegistration.getCount()>cartRegistration.getBookRegistration().getCount()){
-            throw new RecordNotFoundException("invalid count of books");
+        try {
+            CartRegistration cartRegistration = mapper.convertToEntity(cartRegistrationDto);
+            cartRegistration.calculateTotalPrice();
+            if (cartRegistration.getCount() > cartRegistration.getBookRegistration().getCount()) {
+                throw new RecordNotFoundException("invalid count of books");
+            }
+            BookRegistration registration = cartRegistration.getBookRegistration();
+            Cart cart = cartRegistration.getCart();
+            cart.addCartRegistration(cartRegistration);
+            cart.calculateTotalPrice();
+            cartService.save(cart);
+            cartRegistration = cart.getCartRegistrations().stream().reduce((prev, next) -> next).orElse(null);
+            registration.addCartRegistration(cartRegistration);
+            registrationService.save(registration);
+            Library library = registration.getLibrary();
+            for (int i = 0; i < cartRegistration.getCount(); i++) {
+                library.takeBook(registration.getBook());
+            }
+            libraryService.save(registration.getLibrary());
+            return new ResponseEntity<>("Books are in hold", HttpStatus.OK);
         }
-        BookRegistration registration = cartRegistration.getBookRegistration();
-        Cart cart = cartRegistration.getCart();
-        cart.addCartRegistration(cartRegistration);
-        cart.calculateTotalPrice();
-        cartService.save(cart);
-        cartRegistration = cart.getCartRegistrations().stream().reduce((prev, next) -> next).orElse(null);
-        registration.addCartRegistration(cartRegistration);
-        registrationService.save(registration);
-        Library library = registration.getLibrary();
-        for (int i=0; i<cartRegistration.getCount(); i++){
-            library.takeBook(registration.getBook());
+        catch (Exception ex){
+            log.error(ex.getMessage());
+            return new ResponseEntity<>("Wrong attributes", HttpStatus.CONFLICT);
         }
-        libraryService.save(registration.getLibrary());
-        return new ResponseEntity<>("Books are in hold", HttpStatus.OK);
     }
 }
