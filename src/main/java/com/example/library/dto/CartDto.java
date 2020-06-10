@@ -18,4 +18,6 @@ public class CartDto {
     private Long userId;
 
     private Set<Long> registrationsIds;
+
+    private TypeOperation typeOperation = TypeOperation.BUY;
 }

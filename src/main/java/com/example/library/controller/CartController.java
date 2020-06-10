@@ -42,10 +42,9 @@ public class CartController {
     @Autowired
     private Mapper mapper = new Mapper();
 
-    @RequestMapping(value = "/addCart/{type}", method = RequestMethod.PUT)
-    public ResponseEntity<?> addCart(@Valid @RequestBody CartDto cartDto,  @PathVariable TypeOperation type) {
+    @RequestMapping(value = "/addCart", method = RequestMethod.PUT)
+    public ResponseEntity<?> addCart(@Valid @RequestBody CartDto cartDto) {
         Cart cart = mapper.convertToEntity(cartDto);
-        cart.setTypeOperation(type);
         cart.calculateTotalPrice();
         User user = cart.getUser();
         user.addCart(cart);
