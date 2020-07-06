@@ -16,7 +16,7 @@ public class UserGenerator extends ExcelGenerator<User> {
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("user");
             int rowIdx = 0;
-            rowIdx=headerToExcel(workbook,userHeader,sheet,rowIdx);
+            rowIdx = headerToExcel(workbook,userHeader,sheet,rowIdx);
             Row row = sheet.createRow(rowIdx++);
             fillRow(user,row);
             sheet.createRow(rowIdx++);
@@ -34,7 +34,7 @@ public class UserGenerator extends ExcelGenerator<User> {
 
     @Override
     public Report report(User user) {
-        Report report =new Report();
+        Report report = new Report();
         try {
         ByteArrayInputStream in = toExcel(user);
         String date = dateFormat(new Date());

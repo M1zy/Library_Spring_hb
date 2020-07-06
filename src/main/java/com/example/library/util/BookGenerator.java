@@ -16,7 +16,7 @@ public class BookGenerator extends ExcelGenerator<Book> {
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("book");
             int rowIdx = 0;
-            rowIdx=headerToExcel(workbook,bookHeader,sheet,rowIdx);
+            rowIdx = headerToExcel(workbook,bookHeader,sheet,rowIdx);
             Row row = sheet.createRow(rowIdx++);
             fillRow(book,row);
             sheet.createRow(rowIdx++);
