@@ -11,9 +11,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class ExcelGenerator<T extends Essence>{
-     protected abstract ByteArrayInputStream toExcel(T essence);
+    protected abstract ByteArrayInputStream toExcel(T essence);
 
-     public abstract Report report(T essence) throws IOException;
+    public abstract Report report(T essence) throws IOException;
 
     protected static final List<String> bookHeader = Arrays.asList("BookID", "Name", "Author", "Year", "Description");
 
