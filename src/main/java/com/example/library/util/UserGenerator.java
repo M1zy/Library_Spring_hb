@@ -54,6 +54,5 @@ public class UserGenerator extends ExcelGenerator<User> {
         finally {
             return report;
         }
-
     }
 }
